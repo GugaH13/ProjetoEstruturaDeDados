@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class Celula
+public class Celula : IComparable<Celula>
 {
     Celula direita, abaixo;
     int linha, coluna;
@@ -24,5 +24,9 @@ public class Celula
         this.coluna = coluna;
         this.direita = direita;
         this.abaixo = abaixo;
+    }
+    public int CompareTo(Celula c)
+    {
+        return Valor.CompareTo(c.Valor);
     }
 }

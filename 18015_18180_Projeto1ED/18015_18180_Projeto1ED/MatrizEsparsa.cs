@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class ListaLigadaCruzada
+public class MatrizEsparsa
 {
     Celula noCabeca;
     int numeroLinhas, numeroColunas;
+    ListaCircular<Celula> lColuna;
 
     public Celula NoCabeca { get => noCabeca; set => noCabeca = value; }
 
-    public ListaLigadaCruzada(Celula noCabeca, int nl, int nc)
+    public MatrizEsparsa(Celula noCabeca, int nl, int nc)
     {
         this.noCabeca = noCabeca;
         this.numeroLinhas = nl;
@@ -22,11 +23,17 @@ public class ListaLigadaCruzada
 
     protected void Construir(int nl, int nc)
     {
+        lColuna = new ListaCircular<Celula>();
         int nAtualL = 0, nAtualC = 0;
+        NoLista<Celula> atual = lColuna.Primeiro;
 
-        while (nAtualL < nl && nAtualC < nc)
+        while (nAtualL < nl)
         {
-            
+            ListaCircular<Celula> lLinha = new ListaCircular<Celula>();
+            lColuna.Atual = lLinha.Primeiro;
+
+            atual = atual.Prox;
+            nAtualL++;
         }
     }
 
