@@ -50,6 +50,8 @@
             this.txtLinhaSoma = new System.Windows.Forms.TextBox();
             this.gbResultado = new System.Windows.Forms.GroupBox();
             this.lsbResultado = new System.Windows.Forms.ListBox();
+            this.btnArquivo = new System.Windows.Forms.Button();
+            this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz)).BeginInit();
             this.gbOperacoes.SuspendLayout();
             this.gbMultiplicar.SuspendLayout();
@@ -269,11 +271,23 @@
             this.lsbResultado.Size = new System.Drawing.Size(321, 89);
             this.lsbResultado.TabIndex = 6;
             // 
+            // btnArquivo
+            // 
+            this.btnArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArquivo.Location = new System.Drawing.Point(12, 13);
+            this.btnArquivo.Name = "btnArquivo";
+            this.btnArquivo.Size = new System.Drawing.Size(168, 79);
+            this.btnArquivo.TabIndex = 6;
+            this.btnArquivo.Text = "Arquivo";
+            this.btnArquivo.UseVisualStyleBackColor = true;
+            this.btnArquivo.Click += new System.EventHandler(this.btnArquivo_Click);
+            // 
             // frmMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 600);
+            this.Controls.Add(this.btnArquivo);
             this.Controls.Add(this.gbResultado);
             this.Controls.Add(this.gbOperacoes);
             this.Controls.Add(this.dgvMatriz);
@@ -315,6 +329,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtColunaSoma;
         private System.Windows.Forms.TextBox txtLinhaSoma;
+        private System.Windows.Forms.Button btnArquivo;
+        private System.Windows.Forms.OpenFileDialog dlgAbrir;
     }
 }
 

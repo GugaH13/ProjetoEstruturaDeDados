@@ -11,6 +11,7 @@ public class Celula : IComparable<Celula>
     int linha, coluna;
     double valor;
 
+
     public Celula Direita { get => direita; set => direita = value; }
     public Celula Abaixo { get => abaixo; set => abaixo = value; }
     public int Linha { get => linha; set => linha = value; }
