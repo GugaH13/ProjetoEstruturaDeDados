@@ -40,48 +40,53 @@ public class MatrizEsparsa
         }
         else
         {
-            Celula anterior, atual, noCabecaLinhaAtual;
-            anterior = atual = noCabecaLinhaAtual = noCabeca;
+            Celula anteriorLinha, atualLinha, anteriorColuna, atualColuna, noCabecaLinhaAtual, noCabecaColunaAtual;
+            anteriorLinha = atualLinha = anteriorColuna  = atualColuna = noCabecaLinhaAtual = noCabecaColunaAtual = noCabeca;
 
             novaCelula.Abaixo = novaCelula.Direita = null;
 
             if (numeroLinhas >= novaCelula.Linha && numeroColunas >= novaCelula.Coluna)
             {
-                while (atual.Linha != novaCelula.Linha)
+                while (atualLinha.Linha != novaCelula.Linha)
                 {
-                    anterior = atual;
-                    atual = atual.Abaixo;
-                    if (atual.Linha == novaCelula.Linha)
+                    anteriorLinha = atualLinha;
+                    atualLinha = atualLinha.Abaixo;
+                    noCabecaLinhaAtual = atualLinha;
+                }
+                while (atualColuna.Coluna != novaCelula.Coluna)
+                {
+                    anteriorColuna = atualColuna;
+                    atualColuna = atualColuna.Direita;
+                    noCabecaColunaAtual = atualColuna;
+                }
+                if (noCabecaColunaAtual.Direita != noCabecaColunaAtual &&
+                    noCabecaLinhaAtual.Abaixo != noCabecaLinhaAtual)
+                {
+                    while (anteriorColuna.Linha != novaCelula.Linha)
                     {
-                        noCabecaLinhaAtual = atual;
+                        anteriorColuna  = anteriorColuna.Abaixo;
+                        atualColuna = atualColuna.Abaixo;
                     }
+                    novaCelula.Direita = atualColuna.Direita;
+                    anteriorColuna.Direita = novaCelula;
+
+                    novaCelula.Abaixo = atualColuna.Abaixo;
                 }
-                while (atual.Coluna != novaCelula.Coluna)
+                else
                 {
-                    anterior = atual;
-                    atual = atual.Direita;
-                }
-                anterior.Direita = novaCelula;
-                while (atual.Linha != NumeroLinhas && novaCelula.Abaixo == null)
-                {
-                    atual = noCabecaLinhaAtual;
-                    atual = noCabeca.Abaixo;
-                    if (atual.Direita != atual)
+                    if (noCabecaLinhaAtual.Direita == noCabecaLinhaAtual)
                     {
-                        noCabecaLinhaAtual = atual;
-                        while (atual.Coluna != novaCelula.Coluna && atual != null)
-                        {
-                            atual = atual.Direita;
-
-                        }
+                        noCabecaLinhaAtual.Direita = novaCelula;
+                    }
+                    if (noCabecaColunaAtual.Abaixo == noCabecaColunaAtual)
+                    {
+                        noCabecaColunaAtual.Abaixo = novaCelula;
                     }
 
                 }
-            }
-            else
-            {
-                CriarNosCabeca(novaCelula.Linha,novaCelula.Coluna);
-                atual.Abaixo = novaCelula;
+                
+                
+                
             }
 
         }
