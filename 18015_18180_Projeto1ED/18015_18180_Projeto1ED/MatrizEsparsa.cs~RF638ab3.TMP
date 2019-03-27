@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+public class MatrizEsparsa
+{
+    Celula noCabeca;
+    int numeroLinhas, numeroColunas;
+
+    public Celula NoCabeca { get => noCabeca; set => noCabeca = value; }
+    public int NumeroLinhas { get => numeroLinhas; set => numeroLinhas = value; }
+    public int NumeroColunas { get => numeroColunas; set => numeroColunas = value; }
+
+    public MatrizEsparsa()
+    {
+        this.noCabeca = null;
+        this.numeroLinhas = this.numeroColunas = 0;
+    }
+
+    public bool EstaVazia
+    {
+        get => this.noCabeca == null;
+    }
+
+    public void Inserir(Celula novaCelula)
+    {
+        if (EstaVazia)
+            this.noCabeca = novaCelula;
+
+        Celula anterior = atual = noCabeca;
+
+        novaCelula.Abaixo = novaCelula.Direita = null;
+    }
+
+   /* public bool ExisteCelula(Celula c)
+    {
+        Celula atual = noCabeca;
+        
+        while ()
+    }*/
+}

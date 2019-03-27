@@ -14,7 +14,6 @@ namespace _18015_18180_Projeto1ED
     public partial class frmMatriz : Form
     {
         static MatrizEsparsa matriz;
-        static bool primeiraLinha = true;
         public frmMatriz()
         {
             InitializeComponent();
@@ -77,46 +76,65 @@ namespace _18015_18180_Projeto1ED
 
         private void btnArquivo_Click(object sender, EventArgs e)
         {
-            FazerLeitura(ref matriz,dgvMatriz);
+            FazerLeitura(ref matriz, dgvMatriz);
         }
-        public void FazerLeitura(ref MatrizEsparsa qualMatriz,
-                                 DataGridView dgv)
-        {
-            
+        public void FazerLeitura(ref MatrizEsparsa qualMatriz, DataGridView dgv)
+        {            
             if (dlgAbrir.ShowDialog() == DialogResult.OK)
             {
                 var arquivo = new StreamReader(dlgAbrir.FileName);
-                while (!arquivo.EndOfStream)
-                {
-                    LerArquivo(arquivo);
-
-                    if (primeiraLinha == true)
-                    {
-                        qualMatriz = new MatrizEsparsa();
-                        primeiraLinha = false;
-                    }
-                        
-                    
-                }
-                arquivo.Close();
-                qualMatriz.Listar(dgv);
+                LerArquivo(arquivo);
+                Listar(qualMatriz, dgv);
             }
         }
         public void LerArquivo(StreamReader arquivo)
         {
             if (!arquivo.EndOfStream)
             {
+                int posX = 0;
                 string linha = arquivo.ReadLine();
+                // for para descobrir as proporções da matriz
                 for (int i = 0; i < linha.Trim().Length; i++)
                 {
-                    if (linha[i])
+                    if (linha[i] == 'x')
+                    {
+                        posX = i;
+                        break; // interrompe o for quando o 'x' for encontrado
+                    }                    
                 }
+                // define as proporções das matrizes
+                matriz = new MatrizEsparsa(int.Parse(linha.Substring(0, posX)),
+                                           int.Parse(linha.Substring(posX + 1).Trim()));
+                int primeiraSeparacao = 0;
+                int segundaSeparacao = 0;
+                // while para pegar os dados
+                while (!arquivo.EndOfStream)
+                {
+                    linha = arquivo.ReadLine();
+                    for(int i = 0; i < linha.Trim().Length; i++)
+                    {
+                        if(linha[i] == ';')
+                        {
+                            if (primeiraSeparacao != 0)
+                                segundaSeparacao = i;
+                            else
+                                primeiraSeparacao = i;
+                        }
+                    }
+
+                    int colunaDado = int.Parse(linha.Substring(0, primeiraSeparacao));
+                    int linhaDado = int.Parse(linha.Substring(primeiraSeparacao + 1, segundaSeparacao));
+                    double valorDado = double.Parse(linha.Substring(segundaSeparacao + 1).Trim());
+
+                    Celula celulaAtual = new Celula(valorDado, linhaDado, colunaDado, null, null);                    
+                    matriz.Inserir(celulaAtual);
+                }
+                arquivo.Close();
             }
         }
-        public void Listar(DataGridView dgv)
+        public void Listar(MatrizEsparsa qualMatriz, DataGridView dgv)
         {
 
         }
-
     }
 }
