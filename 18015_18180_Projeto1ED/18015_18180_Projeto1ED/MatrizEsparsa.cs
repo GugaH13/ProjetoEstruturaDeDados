@@ -39,70 +39,32 @@ public class MatrizEsparsa
         return vazia;
     }
 
-    public void Inserir(Celula novaCelula)//não finalizado
+    public void Inserir(Celula novaCelula)
     {
-        if (EstaVazia())
+        Celula esq, dir, cima, baixo;
+        esq = dir = cima = baixo = null;
+        if (!ExisteDado(novaCelula, ref cima, ref esq, ref dir, ref baixo))
         {
-            this.noCabeca.Direita.Abaixo = novaCelula;
-            this.noCabeca.Abaixo.Direita = novaCelula;
+            cima.Abaixo = novaCelula;
+            esq.Direita = novaCelula;
+            novaCelula.Abaixo = baixo;
+            novaCelula.Direita = dir;
         }
-        else
+    }
+    public void RemoverCelula(Celula celulaARemover)
+    {
+        Celula esq, dir, cima, baixo;
+        esq = dir = cima = baixo = null;
+        if (ExisteDado(celulaARemover, ref cima, ref esq, ref dir, ref baixo))
         {
-            Celula anteriorLinha, atualLinha, anteriorColuna, atualColuna, noCabecaLinhaAtual, noCabecaColunaAtual;
-            anteriorLinha = atualLinha = anteriorColuna = atualColuna = noCabecaLinhaAtual = noCabecaColunaAtual = noCabeca;
-
-            novaCelula.Abaixo = novaCelula.Direita = null;
-
-            if (numeroLinhas >= novaCelula.Linha && numeroColunas >= novaCelula.Coluna)
-            {
-                while (atualLinha.Linha != novaCelula.Linha)
-                {
-                    anteriorLinha = atualLinha;
-                    atualLinha = atualLinha.Abaixo;
-                    noCabecaLinhaAtual = atualLinha;
-                }
-                while (atualColuna.Coluna != novaCelula.Coluna)
-                {
-                    anteriorColuna = atualColuna;
-                    atualColuna = atualColuna.Direita;
-                    noCabecaColunaAtual = atualColuna;
-                }
-                if (noCabecaColunaAtual.Direita != noCabecaColunaAtual &&
-                    noCabecaLinhaAtual.Abaixo != noCabecaLinhaAtual)
-                {
-                    while (anteriorColuna.Linha != novaCelula.Linha)
-                    {
-                        anteriorColuna = anteriorColuna.Abaixo;
-                        atualColuna = atualColuna.Abaixo;
-                    }
-                    novaCelula.Direita = atualColuna.Direita;
-                    anteriorColuna.Direita = novaCelula;
-
-                    novaCelula.Abaixo = atualColuna.Abaixo;
-                }
-                else
-                {
-                    if (noCabecaLinhaAtual.Direita == noCabecaLinhaAtual)
-                    {
-                        noCabecaLinhaAtual.Direita = novaCelula;
-                    }
-                    if (noCabecaColunaAtual.Abaixo == noCabecaColunaAtual)
-                    {
-                        noCabecaColunaAtual.Abaixo = novaCelula;
-                    }
-
-                }
-
-
-
-            }
-
+            cima.Abaixo = baixo;
+            esq.Direita = dir; 
         }
-
     }
     protected void CriarNosCabeca(int nLinhas, int nColunas)
     {
         int c = default(int);
+        bool primeiraVez = true;
         Celula anterior = this.noCabeca;
         for (int l = -1; l <= nLinhas; l++)
         {
@@ -111,17 +73,19 @@ public class MatrizEsparsa
                 {
                     if (l == -1 && c == -1)
                     {
-                        this.noCabeca = new Celula(default(double), l, c, null, null);
+                        
+                        this.noCabeca = new Celula(default(double), l, c, default(Celula), default(Celula));
+                        anterior = this.noCabeca;
                     }
                     else
                     {
                         if (c == nColunas)
                         {
-                            anterior.Direita = new Celula(default(double), l, c, anterior.Direita, null);
+                            anterior.Direita = new Celula(default(double), l, c, anterior.Direita, default(Celula));
                         }
                         else
                         {
-                            anterior.Direita = new Celula(default(double), l, c, null, null);//como está vazia seu direita recebe a si mesma
+                            anterior.Direita = new Celula(default(double), l, c, default(Celula), default(Celula));//como está vazia seu direita recebe a si mesma
                             anterior = anterior.Direita;
                         }
 
@@ -129,21 +93,35 @@ public class MatrizEsparsa
                 }
             else
             {
-                c = -1;
-                anterior = this.noCabeca;
-                anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, null);
-                anterior = anterior.Abaixo;
+                if (primeiraVez == true)
+                {
+                    anterior = this.noCabeca;
+                    primeiraVez = false;
+                    c = -1;
+                }
+                if (l == nLinhas)
+                {
+                    anterior.Abaixo = this.noCabeca;
+                }
+                else
+                {
+                    anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, null);
+                    anterior = anterior.Abaixo;
+                }
+                
             }
         }
     }
 
-    protected bool ExisteDado(Celula celulaNova, ref Celula cima, ref Celula esq)
+    protected bool ExisteDado(Celula celulaNova, ref Celula cima, ref Celula esq, ref Celula dir, ref Celula baixo)
     {
         bool achou = false;
         if (EstaVazia())
         {
             cima = noCabeca.Direita;
             esq = noCabeca.Abaixo;
+            dir = noCabeca.Abaixo;
+            baixo = noCabeca.Direita;
             achou = false;
         }
         else
@@ -171,6 +149,7 @@ public class MatrizEsparsa
                     achouAcima = true;
                     cima = atualC;
                     achou = false;
+                    baixo = atualC.Abaixo;
                 }
                 else
                 if (atualC.Abaixo.Valor == celulaNova.Valor && 
@@ -179,6 +158,7 @@ public class MatrizEsparsa
                 {
                     achou = true;
                     cima = atualC;
+                    baixo = atualC.Abaixo;
                     achouAcima = true;
                 }
                 else
@@ -192,6 +172,7 @@ public class MatrizEsparsa
                     cima = atualC;
                     achou = false;
                     achouAcima = true;
+                    baixo = atualC.Abaixo;
                 }
             }
             bool achouEsq = false;
@@ -201,17 +182,22 @@ public class MatrizEsparsa
                 {
                     esq = atualL;
                     achouEsq = true;
+                    dir = atualL.Direita;
                 }
                 else
                 if (atualL.Direita == noCabecaL)
                 {
                     esq = atualL;
                     achouEsq = true;
+                    dir = atualL.Direita;
                 }
-                else
-                if (atualL.Direita.Coluna < celulaNova.Coluna)
+                if (atualL.Direita.Valor == celulaNova.Valor &&
+                    atualL.Direita.Coluna == celulaNova.Coluna &&
+                    atualL.Direita.Linha == celulaNova.Linha)
                 {
-                    atualL.Direita
+                    achouEsq = true;
+                    esq = atualL;
+                    dir = atualL.Direita.Direita;
                 }
                 else
                 atualL = atualL.Direita;
