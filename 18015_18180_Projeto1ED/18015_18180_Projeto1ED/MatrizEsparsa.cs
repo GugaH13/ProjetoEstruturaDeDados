@@ -81,11 +81,11 @@ public class MatrizEsparsa
                     {
                         if (c == nColunas)
                         {
-                            anterior.Direita = new Celula(default(double), l, c, anterior.Direita, default(Celula));
+                            anterior.Direita = new Celula(default(double), l, c, this.noCabeca, anterior.Direita);
                         }
                         else
                         {
-                            anterior.Direita = new Celula(default(double), l, c, default(Celula), default(Celula));//como está vazia seu direita recebe a si mesma
+                            anterior.Direita = new Celula(default(double), l, c, default(Celula), anterior.Direita);//como está vazia seu abaixo recebe a si mesma
                             anterior = anterior.Direita;
                         }
 
@@ -105,7 +105,7 @@ public class MatrizEsparsa
                 }
                 else
                 {
-                    anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, null);
+                    anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
                     anterior = anterior.Abaixo;
                 }
                 

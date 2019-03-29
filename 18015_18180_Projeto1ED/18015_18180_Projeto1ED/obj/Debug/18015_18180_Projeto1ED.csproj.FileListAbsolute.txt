@@ -25,3 +25,6 @@ D:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1E
 D:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1EDRepositorio\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.csproj.CoreCompileInputs.cache
 D:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1EDRepositorio\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.exe
 D:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1EDRepositorio\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.pdb
+Z:\Github\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\bin\Debug\18015_18180_Projeto1ED.exe.config
+Z:\Github\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\bin\Debug\18015_18180_Projeto1ED.exe
+Z:\Github\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\bin\Debug\18015_18180_Projeto1ED.pdb

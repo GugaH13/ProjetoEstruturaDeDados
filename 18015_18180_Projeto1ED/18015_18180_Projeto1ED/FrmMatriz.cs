@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//////////////////////////////////////////////////
+//PROJETO MATRIZ ESPARSA - ESTRUTURA DE DADOS   //
+//////////////////////////////////////////////////
+//NOME: GUSTAVO HENRIQUE BÉRA         RA: 18180 //
+//NOME: GUSTAVO HENRIQUE DE MEIRA     RA: 18015 //
+//////////////////////////////////////////////////
+
+using System;
 using System.Windows.Forms;
 using System.IO;
 
@@ -123,7 +123,7 @@ namespace _18015_18180_Projeto1ED
                     }
 
                     int colunaDado = int.Parse(linha.Substring(0, primeiraSeparacao));
-                    int linhaDado = int.Parse(linha.Substring(primeiraSeparacao + 1, segundaSeparacao));
+                    int linhaDado = int.Parse(linha.Substring(primeiraSeparacao + 1, segundaSeparacao - (primeiraSeparacao + 1)));
                     double valorDado = double.Parse(linha.Substring(segundaSeparacao + 1).Trim());
 
                     Celula celulaAtual = new Celula(valorDado, linhaDado, colunaDado, null, null);                    
