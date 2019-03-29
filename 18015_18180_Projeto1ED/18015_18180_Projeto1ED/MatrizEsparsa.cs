@@ -82,10 +82,12 @@ public class MatrizEsparsa
                         if (c == nColunas)
                         {
                             anterior.Direita = new Celula(default(double), l, c, this.noCabeca, anterior.Direita);
+                            anterior.Direita.Abaixo = anterior.Direita;
                         }
                         else
                         {
                             anterior.Direita = new Celula(default(double), l, c, default(Celula), anterior.Direita);//como está vazia seu abaixo recebe a si mesma
+                            anterior.Direita.Abaixo = anterior.Direita;
                             anterior = anterior.Direita;
                         }
 
@@ -101,11 +103,14 @@ public class MatrizEsparsa
                 }
                 if (l == nLinhas)
                 {
-                    anterior.Abaixo = this.noCabeca;
+                    anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
+                    anterior.Abaixo.Direita = anterior.Abaixo;
+                    anterior.Abaixo.Abaixo = this.noCabeca;
                 }
                 else
                 {
                     anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
+                    anterior.Abaixo.Direita = anterior.Abaixo;
                     anterior = anterior.Abaixo;
                 }
                 
@@ -130,11 +135,11 @@ public class MatrizEsparsa
             atualL = noCabeca.Abaixo;
             while (atualC.Coluna != celulaNova.Coluna || atualL.Linha != celulaNova.Linha)
             {
-                if (atualC.Coluna != celulaNova.Coluna && atualC != noCabeca)
+                if (atualC.Coluna != celulaNova.Coluna)
                 {
                     atualC = atualC.Direita;
                 }
-                if (atualL.Linha != celulaNova.Linha && atualL != noCabeca)
+                if (atualL.Linha != celulaNova.Linha)
                 {
                     atualL = atualL.Abaixo;
                 }

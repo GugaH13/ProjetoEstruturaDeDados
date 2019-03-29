@@ -126,8 +126,11 @@ namespace _18015_18180_Projeto1ED
                     int linhaDado = int.Parse(linha.Substring(primeiraSeparacao + 1, segundaSeparacao - (primeiraSeparacao + 1)));
                     double valorDado = double.Parse(linha.Substring(segundaSeparacao + 1).Trim());
 
-                    Celula celulaAtual = new Celula(valorDado, linhaDado, colunaDado, null, null);                    
-                    matriz.Inserir(celulaAtual);
+                    Celula celulaAtual = new Celula(valorDado, linhaDado, colunaDado, default(Celula), default(Celula));
+                    if (linhaDado > matriz.NumeroLinhas || colunaDado > matriz.NumeroColunas)
+                        throw new Exception("Célula fora das dimensões da Matriz!");
+                    else
+                        matriz.Inserir(celulaAtual);
                 }
                 arquivo.Close();
             }
