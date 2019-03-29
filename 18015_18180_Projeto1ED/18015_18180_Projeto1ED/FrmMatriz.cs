@@ -84,7 +84,7 @@ namespace _18015_18180_Projeto1ED
             {
                 var arquivo = new StreamReader(dlgAbrir.FileName);
                 LerArquivo(arquivo);
-                Listar(qualMatriz, dgv);
+                Exibir(qualMatriz, dgv);
             }
         }
         public void LerArquivo(StreamReader arquivo)
@@ -135,9 +135,30 @@ namespace _18015_18180_Projeto1ED
                 arquivo.Close();
             }
         }
-        public void Listar(MatrizEsparsa qualMatriz, DataGridView dgv)
+        public void Exibir(MatrizEsparsa qualMatriz, DataGridView dgv)
         {
+            Celula atual = matriz.NoCabeca.Abaixo;
+            int coluna = -1;
+            int linha = -1;
 
+            dgv.RowCount = matriz.NumeroLinhas;
+            dgv.ColumnCount = matriz.NumeroColunas;
+
+            while (atual.Abaixo != matriz.NoCabeca)
+            {
+                while (atual.Direita != matriz.NoCabeca)
+                {
+                    if(atual.Coluna == coluna && atual.Linha == linha)
+                        dgv.Rows[coluna].Cells[linha].Value = atual.Valor;
+                    else
+                        dgv.Rows[coluna].Cells[linha].Value = 0;
+
+                    coluna++;
+                    atual = atual.Direita;
+                }
+                linha++;
+                atual = atual.Abaixo;
+            }
         }
     }
 }
