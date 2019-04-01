@@ -32,6 +32,9 @@
             this.btnProcurar = new System.Windows.Forms.Button();
             this.txtCelulaProcurada = new System.Windows.Forms.TextBox();
             this.gbOperacoes = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.gbMultiplicar = new System.Windows.Forms.GroupBox();
             this.txtConstMult = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,28 +51,50 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtColunaSoma = new System.Windows.Forms.TextBox();
             this.txtLinhaSoma = new System.Windows.Forms.TextBox();
-            this.gbResultado = new System.Windows.Forms.GroupBox();
-            this.lsbResultado = new System.Windows.Forms.ListBox();
-            this.btnArquivo = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnInserir = new System.Windows.Forms.Button();
+            this.btnRemover = new System.Windows.Forms.Button();
             this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salvarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxQualMatriz = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz)).BeginInit();
             this.gbOperacoes.SuspendLayout();
             this.gbMultiplicar.SuspendLayout();
             this.gbSomar.SuspendLayout();
-            this.gbResultado.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvMatriz
             // 
-            this.dgvMatriz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatriz.Location = new System.Drawing.Point(12, 98);
+            this.dgvMatriz.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMatriz.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvMatriz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvMatriz.ColumnHeadersVisible = false;
+            this.dgvMatriz.Location = new System.Drawing.Point(12, 30);
+            this.dgvMatriz.MultiSelect = false;
             this.dgvMatriz.Name = "dgvMatriz";
-            this.dgvMatriz.Size = new System.Drawing.Size(527, 472);
+            this.dgvMatriz.ReadOnly = true;
+            this.dgvMatriz.RowHeadersVisible = false;
+            this.dgvMatriz.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvMatriz.Size = new System.Drawing.Size(308, 290);
             this.dgvMatriz.TabIndex = 0;
             // 
             // btnProcurar
             // 
-            this.btnProcurar.Location = new System.Drawing.Point(199, 22);
+            this.btnProcurar.Location = new System.Drawing.Point(96, 26);
             this.btnProcurar.Name = "btnProcurar";
             this.btnProcurar.Size = new System.Drawing.Size(75, 23);
             this.btnProcurar.TabIndex = 1;
@@ -78,27 +103,64 @@
             // 
             // txtCelulaProcurada
             // 
-            this.txtCelulaProcurada.Location = new System.Drawing.Point(6, 22);
+            this.txtCelulaProcurada.Location = new System.Drawing.Point(78, 62);
             this.txtCelulaProcurada.Name = "txtCelulaProcurada";
-            this.txtCelulaProcurada.Size = new System.Drawing.Size(187, 23);
+            this.txtCelulaProcurada.Size = new System.Drawing.Size(174, 23);
             this.txtCelulaProcurada.TabIndex = 2;
             // 
             // gbOperacoes
             // 
+            this.gbOperacoes.Controls.Add(this.groupBox1);
+            this.gbOperacoes.Controls.Add(this.label10);
+            this.gbOperacoes.Controls.Add(this.label11);
+            this.gbOperacoes.Controls.Add(this.label9);
             this.gbOperacoes.Controls.Add(this.gbMultiplicar);
             this.gbOperacoes.Controls.Add(this.gbSomar);
+            this.gbOperacoes.Controls.Add(this.textBox2);
+            this.gbOperacoes.Controls.Add(this.textBox1);
             this.gbOperacoes.Controls.Add(this.txtCelulaProcurada);
+            this.gbOperacoes.Controls.Add(this.btnInserir);
+            this.gbOperacoes.Controls.Add(this.btnRemover);
             this.gbOperacoes.Controls.Add(this.btnProcurar);
             this.gbOperacoes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbOperacoes.Location = new System.Drawing.Point(545, 88);
+            this.gbOperacoes.Location = new System.Drawing.Point(640, 30);
             this.gbOperacoes.Name = "gbOperacoes";
-            this.gbOperacoes.Size = new System.Drawing.Size(333, 355);
+            this.gbOperacoes.Size = new System.Drawing.Size(328, 586);
             this.gbOperacoes.TabIndex = 3;
             this.gbOperacoes.TabStop = false;
             this.gbOperacoes.Text = "Operações";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(12, 123);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 17);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Linha: ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 65);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(46, 17);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Valor:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 94);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 17);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Coluna:";
+            // 
             // gbMultiplicar
             // 
+            this.gbMultiplicar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMultiplicar.Controls.Add(this.txtConstMult);
             this.gbMultiplicar.Controls.Add(this.label6);
             this.gbMultiplicar.Controls.Add(this.label5);
@@ -106,9 +168,9 @@
             this.gbMultiplicar.Controls.Add(this.label4);
             this.gbMultiplicar.Controls.Add(this.txtColunaMult);
             this.gbMultiplicar.Controls.Add(this.txtLinhaMult);
-            this.gbMultiplicar.Location = new System.Drawing.Point(0, 187);
+            this.gbMultiplicar.Location = new System.Drawing.Point(6, 306);
             this.gbMultiplicar.Name = "gbMultiplicar";
-            this.gbMultiplicar.Size = new System.Drawing.Size(333, 168);
+            this.gbMultiplicar.Size = new System.Drawing.Size(316, 138);
             this.gbMultiplicar.TabIndex = 4;
             this.gbMultiplicar.TabStop = false;
             this.gbMultiplicar.Text = "Multiplicar Por Constante";
@@ -176,6 +238,8 @@
             // 
             // gbSomar
             // 
+            this.gbSomar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSomar.Controls.Add(this.txtConstSomar);
             this.gbSomar.Controls.Add(this.label1);
             this.gbSomar.Controls.Add(this.label2);
@@ -183,9 +247,9 @@
             this.gbSomar.Controls.Add(this.label8);
             this.gbSomar.Controls.Add(this.txtColunaSoma);
             this.gbSomar.Controls.Add(this.txtLinhaSoma);
-            this.gbSomar.Location = new System.Drawing.Point(0, 51);
+            this.gbSomar.Location = new System.Drawing.Point(6, 162);
             this.gbSomar.Name = "gbSomar";
-            this.gbSomar.Size = new System.Drawing.Size(333, 130);
+            this.gbSomar.Size = new System.Drawing.Size(316, 138);
             this.gbSomar.TabIndex = 3;
             this.gbSomar.TabStop = false;
             this.gbSomar.Text = "Somar Constante";
@@ -251,48 +315,164 @@
             this.txtLinhaSoma.TextChanged += new System.EventHandler(this.txtLinhaSoma_TextChanged);
             this.txtLinhaSoma.Leave += new System.EventHandler(this.txtLinhaSoma_Leave);
             // 
-            // gbResultado
+            // textBox2
             // 
-            this.gbResultado.Controls.Add(this.lsbResultado);
-            this.gbResultado.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbResultado.Location = new System.Drawing.Point(545, 449);
-            this.gbResultado.Name = "gbResultado";
-            this.gbResultado.Size = new System.Drawing.Size(333, 121);
-            this.gbResultado.TabIndex = 5;
-            this.gbResultado.TabStop = false;
-            this.gbResultado.Text = "Resultado";
+            this.textBox2.Location = new System.Drawing.Point(78, 120);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(174, 23);
+            this.textBox2.TabIndex = 2;
             // 
-            // lsbResultado
+            // textBox1
             // 
-            this.lsbResultado.FormattingEnabled = true;
-            this.lsbResultado.ItemHeight = 17;
-            this.lsbResultado.Location = new System.Drawing.Point(6, 22);
-            this.lsbResultado.Name = "lsbResultado";
-            this.lsbResultado.Size = new System.Drawing.Size(321, 89);
-            this.lsbResultado.TabIndex = 6;
+            this.textBox1.Location = new System.Drawing.Point(78, 91);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(174, 23);
+            this.textBox1.TabIndex = 2;
             // 
-            // btnArquivo
+            // btnInserir
             // 
-            this.btnArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnArquivo.Location = new System.Drawing.Point(12, 13);
-            this.btnArquivo.Name = "btnArquivo";
-            this.btnArquivo.Size = new System.Drawing.Size(168, 79);
-            this.btnArquivo.TabIndex = 6;
-            this.btnArquivo.Text = "Arquivo";
-            this.btnArquivo.UseVisualStyleBackColor = true;
-            this.btnArquivo.Click += new System.EventHandler(this.btnArquivo_Click);
+            this.btnInserir.Location = new System.Drawing.Point(15, 26);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(75, 23);
+            this.btnInserir.TabIndex = 1;
+            this.btnInserir.Text = "Inserir";
+            this.btnInserir.UseVisualStyleBackColor = true;
+            // 
+            // btnRemover
+            // 
+            this.btnRemover.Location = new System.Drawing.Point(177, 26);
+            this.btnRemover.Name = "btnRemover";
+            this.btnRemover.Size = new System.Drawing.Size(75, 23);
+            this.btnRemover.TabIndex = 1;
+            this.btnRemover.Text = "Remover";
+            this.btnRemover.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.arquivoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(980, 27);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // arquivoToolStripMenuItem
+            // 
+            this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirToolStripMenuItem,
+            this.salvarToolStripMenuItem});
+            this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
+            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(69, 23);
+            this.arquivoToolStripMenuItem.Text = "Arquivo";
+            // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.btnArquivo_Click);
+            // 
+            // salvarToolStripMenuItem
+            // 
+            this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
+            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.salvarToolStripMenuItem.Text = "Salvar";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 326);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.Size = new System.Drawing.Size(308, 290);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView2.ColumnHeadersVisible = false;
+            this.dataGridView2.Location = new System.Drawing.Point(326, 30);
+            this.dataGridView2.MultiSelect = false;
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView2.Size = new System.Drawing.Size(308, 290);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnExcluir);
+            this.groupBox1.Controls.Add(this.btnLimpar);
+            this.groupBox1.Controls.Add(this.cbxQualMatriz);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.groupBox1.Location = new System.Drawing.Point(6, 450);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(316, 130);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Qual Matriz?";
+            // 
+            // cbxQualMatriz
+            // 
+            this.cbxQualMatriz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxQualMatriz.FormattingEnabled = true;
+            this.cbxQualMatriz.Location = new System.Drawing.Point(71, 62);
+            this.cbxQualMatriz.Name = "cbxQualMatriz";
+            this.cbxQualMatriz.Size = new System.Drawing.Size(174, 25);
+            this.cbxQualMatriz.TabIndex = 14;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 65);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 17);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Matriz:";
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(18, 27);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpar.TabIndex = 15;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Location = new System.Drawing.Point(99, 27);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 15;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
             // 
             // frmMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 600);
-            this.Controls.Add(this.btnArquivo);
-            this.Controls.Add(this.gbResultado);
+            this.ClientSize = new System.Drawing.Size(980, 627);
             this.Controls.Add(this.gbOperacoes);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dgvMatriz);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMatriz";
-            this.Text = "Matriz Esparsa";
+            this.Text = "Operações com Matriz Esparsa | Estrutura de Dados";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz)).EndInit();
             this.gbOperacoes.ResumeLayout(false);
             this.gbOperacoes.PerformLayout();
@@ -300,8 +480,14 @@
             this.gbMultiplicar.PerformLayout();
             this.gbSomar.ResumeLayout(false);
             this.gbSomar.PerformLayout();
-            this.gbResultado.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -311,8 +497,6 @@
         private System.Windows.Forms.Button btnProcurar;
         private System.Windows.Forms.TextBox txtCelulaProcurada;
         private System.Windows.Forms.GroupBox gbOperacoes;
-        private System.Windows.Forms.GroupBox gbResultado;
-        private System.Windows.Forms.ListBox lsbResultado;
         private System.Windows.Forms.GroupBox gbSomar;
         private System.Windows.Forms.GroupBox gbMultiplicar;
         private System.Windows.Forms.TextBox txtConstMult;
@@ -329,8 +513,25 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtColunaSoma;
         private System.Windows.Forms.TextBox txtLinhaSoma;
-        private System.Windows.Forms.Button btnArquivo;
         private System.Windows.Forms.OpenFileDialog dlgAbrir;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salvarToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnInserir;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnRemover;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbxQualMatriz;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }
 
