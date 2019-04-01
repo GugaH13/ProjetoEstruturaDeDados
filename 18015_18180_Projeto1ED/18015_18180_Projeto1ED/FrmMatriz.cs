@@ -84,7 +84,7 @@ namespace _18015_18180_Projeto1ED
             {
                 var arquivo = new StreamReader(dlgAbrir.FileName);
                 LerArquivo(arquivo);
-                Exibir(qualMatriz, dgv);
+                Exibir(dgv, qualMatriz);
             }
         }
         public void LerArquivo(StreamReader arquivo)
@@ -103,8 +103,8 @@ namespace _18015_18180_Projeto1ED
                     }                    
                 }
                 // define as proporções das matrizes
-                matriz = new MatrizEsparsa(int.Parse(linha.Substring(0, posX)),
-                                           int.Parse(linha.Substring(posX + 1).Trim()));
+                matriz = new MatrizEsparsa(int.Parse(linha.Substring(posX + 1).Trim()),
+                                           int.Parse(linha.Substring(0, posX))); 
                 int primeiraSeparacao = 0;
                 int segundaSeparacao = 0;
                 // while para pegar os dados
@@ -135,29 +135,27 @@ namespace _18015_18180_Projeto1ED
                 arquivo.Close();
             }
         }
-        public void Exibir(MatrizEsparsa qualMatriz, DataGridView dgv)
+
+        public void Exibir(DataGridView dgv, MatrizEsparsa matriz)
         {
-            Celula atual = matriz.NoCabeca.Abaixo;
-            int coluna = -1;
-            int linha = -1;
+            Celula atualLinha = matriz.NoCabeca.Direita;
+            Celula atual = atualLinha.Abaixo;
 
             dgv.RowCount = matriz.NumeroLinhas;
             dgv.ColumnCount = matriz.NumeroColunas;
 
-            while (atual.Abaixo != matriz.NoCabeca)
+            while (atualLinha != matriz.NoCabeca)
             {
-                while (atual.Direita != matriz.NoCabeca)
+                while (atual != atualLinha)
                 {
-                    if(atual.Coluna == coluna && atual.Linha == linha)
-                        dgv.Rows[coluna].Cells[linha].Value = atual.Valor;
-                    else
-                        dgv.Rows[coluna].Cells[linha].Value = 0;
-
-                    coluna++;
-                    atual = atual.Direita;
+                    if (atual.Valor != default(double))
+                    {
+                        dgv.Rows[atual.Linha - 1].Cells[atual.Coluna - 1].Value = atual.Valor;//deve estar errado
+                    }
+                    atual = atual.Abaixo;
                 }
-                linha++;
-                atual = atual.Abaixo;
+                atualLinha = atualLinha.Direita;
+                atual = atualLinha.Abaixo;
             }
         }
     }
