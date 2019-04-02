@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+//PROJETO MATRIZ ESPARSA - ESTRUTURA DE DADOS   //
+//////////////////////////////////////////////////
+//NOME: GUSTAVO HENRIQUE BÉRA         RA: 18180 //
+//NOME: GUSTAVO HENRIQUE DE MEIRA     RA: 18015 //
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -30,7 +30,7 @@
         {
             this.dgvMatriz1 = new System.Windows.Forms.DataGridView();
             this.btnProcurar = new System.Windows.Forms.Button();
-            this.txtValor = new System.Windows.Forms.TextBox();
+            this.txtCelulaProcurada = new System.Windows.Forms.TextBox();
             this.gbOperacoes = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -56,20 +56,24 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtColunaSoma = new System.Windows.Forms.TextBox();
             this.txtLinhaSoma = new System.Windows.Forms.TextBox();
-            this.txtLinha = new System.Windows.Forms.TextBox();
-            this.txtColuna = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgvMatriz2 = new System.Windows.Forms.DataGridView();
-            this.btnArquivo1 = new System.Windows.Forms.Button();
-            this.btnArquivo2 = new System.Windows.Forms.Button();
+            this.arquivo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz1)).BeginInit();
             this.gbOperacoes.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbMultiplicar.SuspendLayout();
             this.gbSomar.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz2)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +84,7 @@
             this.dgvMatriz1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvMatriz1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMatriz1.ColumnHeadersVisible = false;
-            this.dgvMatriz1.Location = new System.Drawing.Point(12, 41);
+            this.dgvMatriz1.Location = new System.Drawing.Point(12, 30);
             this.dgvMatriz1.MultiSelect = false;
             this.dgvMatriz1.Name = "dgvMatriz1";
             this.dgvMatriz1.ReadOnly = true;
@@ -97,14 +101,13 @@
             this.btnProcurar.TabIndex = 1;
             this.btnProcurar.Text = "Procurar";
             this.btnProcurar.UseVisualStyleBackColor = true;
-            this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
             // 
-            // txtValor
+            // txtCelulaProcurada
             // 
-            this.txtValor.Location = new System.Drawing.Point(78, 62);
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(174, 23);
-            this.txtValor.TabIndex = 2;
+            this.txtCelulaProcurada.Location = new System.Drawing.Point(78, 62);
+            this.txtCelulaProcurada.Name = "txtCelulaProcurada";
+            this.txtCelulaProcurada.Size = new System.Drawing.Size(174, 23);
+            this.txtCelulaProcurada.TabIndex = 2;
             // 
             // gbOperacoes
             // 
@@ -114,14 +117,14 @@
             this.gbOperacoes.Controls.Add(this.label9);
             this.gbOperacoes.Controls.Add(this.gbMultiplicar);
             this.gbOperacoes.Controls.Add(this.gbSomar);
-            this.gbOperacoes.Controls.Add(this.txtLinha);
-            this.gbOperacoes.Controls.Add(this.txtColuna);
-            this.gbOperacoes.Controls.Add(this.txtValor);
+            this.gbOperacoes.Controls.Add(this.textBox2);
+            this.gbOperacoes.Controls.Add(this.textBox1);
+            this.gbOperacoes.Controls.Add(this.txtCelulaProcurada);
             this.gbOperacoes.Controls.Add(this.btnInserir);
             this.gbOperacoes.Controls.Add(this.btnRemover);
             this.gbOperacoes.Controls.Add(this.btnProcurar);
             this.gbOperacoes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbOperacoes.Location = new System.Drawing.Point(640, 41);
+            this.gbOperacoes.Location = new System.Drawing.Point(640, 30);
             this.gbOperacoes.Name = "gbOperacoes";
             this.gbOperacoes.Size = new System.Drawing.Size(328, 586);
             this.gbOperacoes.TabIndex = 3;
@@ -363,19 +366,19 @@
             this.txtLinhaSoma.TextChanged += new System.EventHandler(this.txtLinhaSoma_TextChanged);
             this.txtLinhaSoma.Leave += new System.EventHandler(this.txtLinhaSoma_Leave);
             // 
-            // txtLinha
+            // textBox2
             // 
-            this.txtLinha.Location = new System.Drawing.Point(78, 120);
-            this.txtLinha.Name = "txtLinha";
-            this.txtLinha.Size = new System.Drawing.Size(174, 23);
-            this.txtLinha.TabIndex = 2;
+            this.textBox2.Location = new System.Drawing.Point(78, 120);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(174, 23);
+            this.textBox2.TabIndex = 2;
             // 
-            // txtColuna
+            // textBox1
             // 
-            this.txtColuna.Location = new System.Drawing.Point(78, 91);
-            this.txtColuna.Name = "txtColuna";
-            this.txtColuna.Size = new System.Drawing.Size(174, 23);
-            this.txtColuna.TabIndex = 2;
+            this.textBox1.Location = new System.Drawing.Point(78, 91);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(174, 23);
+            this.textBox1.TabIndex = 2;
             // 
             // btnInserir
             // 
@@ -385,7 +388,6 @@
             this.btnInserir.TabIndex = 1;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnRemover
             // 
@@ -395,7 +397,33 @@
             this.btnRemover.TabIndex = 1;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
-            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.arquivoToolStripMenuItem,
+            this.arquivo2ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(980, 27);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // arquivoToolStripMenuItem
+            // 
+            this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirToolStripMenuItem});
+            this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
+            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(81, 23);
+            this.arquivoToolStripMenuItem.Text = "Arquivo 1";
+            // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.btnArquivo_Click);
             // 
             // dataGridView1
             // 
@@ -403,7 +431,7 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 337);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 326);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -418,7 +446,7 @@
             this.dgvMatriz2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvMatriz2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMatriz2.ColumnHeadersVisible = false;
-            this.dgvMatriz2.Location = new System.Drawing.Point(326, 41);
+            this.dgvMatriz2.Location = new System.Drawing.Point(326, 30);
             this.dgvMatriz2.MultiSelect = false;
             this.dgvMatriz2.Name = "dgvMatriz2";
             this.dgvMatriz2.ReadOnly = true;
@@ -427,39 +455,32 @@
             this.dgvMatriz2.Size = new System.Drawing.Size(308, 290);
             this.dgvMatriz2.TabIndex = 0;
             // 
-            // btnArquivo1
+            // arquivo2ToolStripMenuItem
             // 
-            this.btnArquivo1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnArquivo1.Location = new System.Drawing.Point(12, 12);
-            this.btnArquivo1.Name = "btnArquivo1";
-            this.btnArquivo1.Size = new System.Drawing.Size(84, 23);
-            this.btnArquivo1.TabIndex = 4;
-            this.btnArquivo1.Text = "Arquivo 1";
-            this.btnArquivo1.UseVisualStyleBackColor = true;
-            this.btnArquivo1.Click += new System.EventHandler(this.btnArquivo_Click);
+            this.arquivo2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirToolStripMenuItem1});
+            this.arquivo2ToolStripMenuItem.Name = "arquivo2ToolStripMenuItem";
+            this.arquivo2ToolStripMenuItem.Size = new System.Drawing.Size(81, 23);
+            this.arquivo2ToolStripMenuItem.Text = "Arquivo 2";
             // 
-            // btnArquivo2
+            // abrirToolStripMenuItem1
             // 
-            this.btnArquivo2.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnArquivo2.Location = new System.Drawing.Point(102, 12);
-            this.btnArquivo2.Name = "btnArquivo2";
-            this.btnArquivo2.Size = new System.Drawing.Size(84, 23);
-            this.btnArquivo2.TabIndex = 4;
-            this.btnArquivo2.Text = "Arquivo 2";
-            this.btnArquivo2.UseVisualStyleBackColor = true;
-            this.btnArquivo2.Click += new System.EventHandler(this.btnArquivo2_Click);
+            this.abrirToolStripMenuItem1.Name = "abrirToolStripMenuItem1";
+            this.abrirToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.abrirToolStripMenuItem1.Text = "Abrir";
+            this.abrirToolStripMenuItem1.Click += new System.EventHandler(this.btnArquivo2_Click);
             // 
             // frmMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 639);
-            this.Controls.Add(this.btnArquivo2);
-            this.Controls.Add(this.btnArquivo1);
+            this.ClientSize = new System.Drawing.Size(980, 627);
             this.Controls.Add(this.gbOperacoes);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dgvMatriz2);
             this.Controls.Add(this.dgvMatriz1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMatriz";
             this.Text = "Operações com Matriz Esparsa | Estrutura de Dados";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz1)).EndInit();
@@ -471,9 +492,12 @@
             this.gbMultiplicar.PerformLayout();
             this.gbSomar.ResumeLayout(false);
             this.gbSomar.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -481,7 +505,7 @@
 
         private System.Windows.Forms.DataGridView dgvMatriz1;
         private System.Windows.Forms.Button btnProcurar;
-        private System.Windows.Forms.TextBox txtValor;
+        private System.Windows.Forms.TextBox txtCelulaProcurada;
         private System.Windows.Forms.GroupBox gbOperacoes;
         private System.Windows.Forms.GroupBox gbSomar;
         private System.Windows.Forms.GroupBox gbMultiplicar;
@@ -500,12 +524,15 @@
         private System.Windows.Forms.TextBox txtColunaSoma;
         private System.Windows.Forms.TextBox txtLinhaSoma;
         private System.Windows.Forms.OpenFileDialog dlgAbrir;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dgvMatriz2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtLinha;
-        private System.Windows.Forms.TextBox txtColuna;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnInserir;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnRemover;
@@ -514,8 +541,8 @@
         private System.Windows.Forms.ComboBox cbxQualMatriz;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnLimpar;
-        private System.Windows.Forms.Button btnArquivo1;
-        private System.Windows.Forms.Button btnArquivo2;
+        private System.Windows.Forms.ToolStripMenuItem arquivo2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem1;
     }
 }
 

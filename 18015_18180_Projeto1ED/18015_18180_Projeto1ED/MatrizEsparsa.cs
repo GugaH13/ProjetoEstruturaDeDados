@@ -1,9 +1,15 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+//PROJETO MATRIZ ESPARSA - ESTRUTURA DE DADOS   //
+//////////////////////////////////////////////////
+//NOME: GUSTAVO HENRIQUE BÉRA         RA: 18180 //
+//NOME: GUSTAVO HENRIQUE DE MEIRA     RA: 18015 //
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 
 public class MatrizEsparsa
 {
@@ -39,39 +45,68 @@ public class MatrizEsparsa
         return vazia;
     }
 
+    public Celula Procurar(int coluna, int linha)
+    {
+        Celula atualColuna = this.NoCabeca.Direita;
+        while (atualColuna.Coluna != coluna)
+            atualColuna = atualColuna.Direita;
+
+        Celula atual = atualColuna.Abaixo;
+        while (atual != atualColuna)
+        {
+            if(atual.Linha == linha)
+                return atual;
+            else
+                atual = atual.Abaixo;
+        }
+
+        return default(Celula);
+    }
+
     public void Inserir(Celula novaCelula)
     {
-        Celula esq, dir, cima, baixo;
-        esq = dir = cima = baixo = null;
-        if (!ExisteDado(novaCelula, ref cima, ref esq, ref dir, ref baixo))
+        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas)
         {
-            cima.Abaixo = novaCelula;
-            esq.Direita = novaCelula;
-            novaCelula.Abaixo = baixo;
-            novaCelula.Direita = dir;
+            Celula esq, dir, cima, baixo;
+            esq = dir = cima = baixo = null;
+            if (!ExisteDado(novaCelula, ref cima, ref esq, ref dir, ref baixo))
+            {
+                cima.Abaixo = novaCelula;
+                esq.Direita = novaCelula;
+                novaCelula.Abaixo = baixo;
+                novaCelula.Direita = dir;
+            }
         }
+        else
+            throw new Exception("Coordenadas fora do intervalo!");
     }
-    public void RemoverCelula(Celula celulaARemover)
+    public void RemoverCelula(int coluna, int linha)
     {
-        Celula esq, dir, cima, baixo;
-        esq = dir = cima = baixo = null;
-        if (ExisteDado(celulaARemover, ref cima, ref esq, ref dir, ref baixo))
+        Celula celulaARemover = Procurar(coluna, linha);
+        if (celulaARemover != default(Celula))
         {
-            cima.Abaixo = baixo;
-            esq.Direita = dir; 
+            Celula esq, dir, cima, baixo;
+            esq = dir = cima = baixo = null;
+            if (ExisteDado(celulaARemover, ref cima, ref esq, ref dir, ref baixo))
+            {
+                cima.Abaixo = baixo;
+                esq.Direita = dir;
+            }
         }
+        else
+            throw new Exception("Impossível remover célula nula!");
     }
     protected void CriarNosCabeca(int nLinhas, int nColunas)
     {
         int c = default(int);
         bool primeiraVez = true;
         Celula anterior = this.noCabeca;
-        for (int l = -1; l <= nLinhas; l++)
+        for (int l = 0; l <= nLinhas; l++)
         {
-            if (l == -1)
-                for (c = -1; c <= nColunas; c++)
+            if (l == 0)
+                for (c = 0; c <= nColunas; c++)
                 {
-                    if (l == -1 && c == -1)
+                    if (l == 0 && c == 0)
                     {
                         
                         this.noCabeca = new Celula(default(double), l, c, default(Celula), default(Celula));
@@ -99,7 +134,7 @@ public class MatrizEsparsa
                 {
                     anterior = this.noCabeca;
                     primeiraVez = false;
-                    c = -1;
+                    c = 0;
                 }
                 if (l == nLinhas)
                 {
@@ -163,7 +198,7 @@ public class MatrizEsparsa
                 {
                     achou = true;
                     cima = atualC;
-                    baixo = atualC.Abaixo;
+                    baixo = atualC.Abaixo.Abaixo; // talvez esteja errado
                     achouAcima = true;
                 }
                 else
