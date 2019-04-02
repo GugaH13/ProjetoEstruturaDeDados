@@ -20,34 +20,9 @@ namespace _18015_18180_Projeto1ED
             InitializeComponent();
         }
 
-        private void txtLinhaMult_TextChanged(object sender, EventArgs e)
-        {
-            txtChange(txtLinhaMult,txtColunaMult);
-        }
-
-        private void txtColunaMult_TextChanged(object sender, EventArgs e)
-        {
-            txtChange(txtColunaMult, txtLinhaMult);
-        }
-
-        private void txtLinhaMult_Leave(object sender, EventArgs e)
-        {
-            txtLeave(txtLinhaMult,txtColunaMult);
-        }
-
-        private void txtColunaMult_Leave(object sender, EventArgs e)
-        {
-            txtLeave(txtColunaMult,txtLinhaMult);
-        }
-
-        private void txtLinhaSoma_TextChanged(object sender, EventArgs e)
-        {
-            txtChange(txtLinhaSoma,txtColunaSoma);
-        }
-
         private void txtColunaSoma_TextChanged(object sender, EventArgs e)
         {
-            txtChange(txtColunaSoma, txtLinhaSoma);
+           // txtChange(txtColunaSoma, txtLinhaSoma);
         }
         static void txtChange(TextBox txtAlterando, TextBox txtBloqueado)
         {
@@ -67,12 +42,12 @@ namespace _18015_18180_Projeto1ED
 
         private void txtLinhaSoma_Leave(object sender, EventArgs e)
         {
-            txtLeave(txtLinhaSoma,txtColunaSoma);
+            //txtLeave(txtLinhaSoma,txtColunaSoma);
         }
 
         private void txtColunaSoma_Leave(object sender, EventArgs e)
         {
-            txtLeave(txtColunaSoma,txtLinhaSoma);
+           // txtLeave(txtColunaSoma,txtLinhaSoma);
         }
 
         private void btnArquivo_Click(object sender, EventArgs e)
@@ -193,6 +168,20 @@ namespace _18015_18180_Projeto1ED
             }
             else
                 MessageBox.Show("Coordenadas fora do intervalo!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSomar_Click(object sender, EventArgs e)
+        {
+            if (cbxQualMatriz.SelectedItem.ToString() == "Matriz 1")
+            {
+                matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
+                Exibir(dgvMatriz1, matriz1);
+            }
+            else
+            {
+                matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
+                Exibir(dgvMatriz2, matriz2);
+            }
         }
 
         public void LerArquivo(ref MatrizEsparsa qualMatriz, StreamReader arquivo)

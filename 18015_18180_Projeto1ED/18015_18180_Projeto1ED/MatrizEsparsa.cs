@@ -262,12 +262,12 @@ public class MatrizEsparsa
 
         while (linhaAtual < NumeroLinhas)
         {
-            while (linhaAtual != ateOnde)
+            if (linhaAtual != ateOnde)
             {
                 Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
                 linhaAtual++;
             }
-		    if (linhaAtual == ateOnde)
+		    else
 		    {
                 atual.Valor += valor;
                 if (atual.Valor == 0)
