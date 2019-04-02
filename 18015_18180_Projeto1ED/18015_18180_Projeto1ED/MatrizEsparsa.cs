@@ -248,4 +248,56 @@ public class MatrizEsparsa
         return achou;
 
     }
+    public void SomarEmColuna(int c, double valor)
+    {
+        Celula atualColuna = NoCabeca.Direita;
+
+        while (atualColuna.Coluna != c)
+        {
+            atualColuna = atualColuna.Direita;
+        }
+
+        Celula atual = atualColuna.Abaixo;
+        int linhaAtual = 1, ateOnde = atual.Linha;
+
+        while (linhaAtual < NumeroLinhas)
+        {
+            while (linhaAtual != ateOnde)
+            {
+                Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
+                linhaAtual++;
+            }
+		    if (linhaAtual == ateOnde)
+		    {
+                atual.Valor += valor;
+                if (atual.Valor == 0)
+                {
+                    RemoverCelula(atual.Coluna,atual.Linha);
+                }
+                atual = atual.Abaixo;
+                if (atual.Linha == 0)
+                    ateOnde = NumeroLinhas;
+                else
+                    ateOnde = atual.Linha;
+                linhaAtual++;
+            }
+
+        }
+        if (linhaAtual == NumeroLinhas)
+        {
+            if (Procurar(atualColuna.Coluna, linhaAtual) != default(Celula))
+            {
+                Procurar(atualColuna.Coluna, linhaAtual).Valor += valor;
+                if (Procurar(atualColuna.Coluna, linhaAtual).Valor == 0)
+                {
+                    RemoverCelula(atualColuna.Coluna, linhaAtual);
+                }
+            }
+            else
+            {
+                Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
+            }
+            
+        }
+    }
 }
