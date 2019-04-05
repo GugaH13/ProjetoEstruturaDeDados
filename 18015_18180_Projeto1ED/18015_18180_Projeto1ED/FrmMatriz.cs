@@ -13,7 +13,7 @@ namespace _18015_18180_Projeto1ED
 {
     public partial class frmMatriz : Form
     {
-        MatrizEsparsa matriz1, matriz2, matriz3;
+        MatrizEsparsa matriz1, matriz2;
 
         public frmMatriz()
         {
@@ -22,7 +22,7 @@ namespace _18015_18180_Projeto1ED
 
         private void txtColunaSoma_TextChanged(object sender, EventArgs e)
         {
-           // txtChange(txtColunaSoma, txtLinhaSoma);
+            // txtChange(txtColunaSoma, txtLinhaSoma);
         }
         static void txtChange(TextBox txtAlterando, TextBox txtBloqueado)
         {
@@ -47,7 +47,7 @@ namespace _18015_18180_Projeto1ED
 
         private void txtColunaSoma_Leave(object sender, EventArgs e)
         {
-           // txtLeave(txtColunaSoma,txtLinhaSoma);
+            // txtLeave(txtColunaSoma,txtLinhaSoma);
         }
 
         private void btnArquivo_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace _18015_18180_Projeto1ED
         }
 
         public void FazerLeitura(ref MatrizEsparsa qualMatriz, DataGridView dgv)
-        {            
+        {
             if (dlgAbrir.ShowDialog() == DialogResult.OK)
             {
                 var arquivo = new StreamReader(dlgAbrir.FileName);
@@ -87,7 +87,7 @@ namespace _18015_18180_Projeto1ED
                     matriz1.Inserir(new Celula(valor, linha, coluna, default(Celula), default(Celula)));
                     Exibir(dgvMatriz1, matriz1);
                 }
-                catch(Exception erro)
+                catch (Exception erro)
                 {
                     MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -97,7 +97,7 @@ namespace _18015_18180_Projeto1ED
                 try
                 {
                     matriz2.Inserir(new Celula(valor, linha, coluna, default(Celula), default(Celula)));
-                    Exibir(dgvMatriz1, matriz2);
+                    Exibir(dgvMatriz2, matriz2);
                 }
                 catch
                 {
@@ -120,7 +120,7 @@ namespace _18015_18180_Projeto1ED
                         matriz1.RemoverCelula(coluna, linha);
                         Exibir(dgvMatriz1, matriz1);
                     }
-                    catch(Exception erro)
+                    catch (Exception erro)
                     {
                         MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -197,20 +197,20 @@ namespace _18015_18180_Projeto1ED
                     {
                         posX = i;
                         break; // interrompe o for quando o 'x' for encontrado
-                    }                    
+                    }
                 }
                 // define as proporções das matrizes
                 qualMatriz = new MatrizEsparsa(int.Parse(linha.Substring(posX + 1).Trim()),
-                                           int.Parse(linha.Substring(0, posX))); 
+                                           int.Parse(linha.Substring(0, posX)));
                 int primeiraSeparacao = 0;
                 int segundaSeparacao = 0;
                 // while para pegar os dados
                 while (!arquivo.EndOfStream)
                 {
                     linha = arquivo.ReadLine();
-                    for(int i = 0; i < linha.Trim().Length; i++)
+                    for (int i = 0; i < linha.Trim().Length; i++)
                     {
-                        if(linha[i] == ';')
+                        if (linha[i] == ';')
                         {
                             if (primeiraSeparacao != 0)
                                 segundaSeparacao = i;
@@ -231,6 +231,11 @@ namespace _18015_18180_Projeto1ED
                 }
                 arquivo.Close();
             }
+        }
+
+        private void btnSomarMatrizes_Click(object sender, EventArgs e)
+        {
+            Exibir(dgvMatriz3, SomarMatrizes(matriz1, matriz2));
         }
 
         public void Exibir(DataGridView dgv, MatrizEsparsa matriz)
@@ -257,6 +262,91 @@ namespace _18015_18180_Projeto1ED
                 atualColuna = atualColuna.Direita;
                 atual = atualColuna.Abaixo;
             }
+        }
+        public MatrizEsparsa SomarMatrizes(MatrizEsparsa matriz1, MatrizEsparsa matriz2)
+        {
+            MatrizEsparsa resultado;
+            if (matriz1.NumeroLinhas == matriz2.NumeroLinhas && matriz1.NumeroColunas == matriz2.NumeroColunas)
+            {
+                resultado = new MatrizEsparsa(matriz1.NumeroLinhas, matriz1.NumeroColunas);
+
+                Celula topo1 = matriz1.NoCabeca.Direita,
+                       topo2 = matriz2.NoCabeca.Direita;
+                Celula atual1 = topo1.Abaixo,
+                       atual2 = topo2.Abaixo;
+                while (topo1 != matriz1.NoCabeca && topo2 != matriz2.NoCabeca)
+                {
+                    if (atual1.Linha == atual2.Linha && atual1.Coluna == atual2.Coluna)
+                    {
+                        if (atual1.Valor + atual2.Valor != 0)
+                            resultado.Inserir(new Celula(atual1.Valor + atual2.Valor, atual1.Linha, atual1.Coluna, default(Celula), default(Celula)));
+
+                        atual1 = atual1.Abaixo;
+                        atual2 = atual2.Abaixo;
+                    }
+                    else
+                    if (atual1.Linha < atual2.Linha && atual1.Coluna == atual2.Coluna)
+                    {
+                        resultado.Inserir(new Celula(atual1.Valor, atual1.Linha, atual1.Coluna, default(Celula), default(Celula)));
+                        atual1 = atual1.Abaixo;
+                    }
+                    else
+                    if (atual2.Linha < atual1.Linha && atual2.Coluna == atual1.Coluna)
+                    {
+                        resultado.Inserir(new Celula(atual2.Valor, atual2.Linha, atual2.Coluna, default(Celula), default(Celula)));
+                        atual1 = atual1.Abaixo;
+                    }
+                    else
+                    if (atual1.Coluna != atual2.Coluna)
+                    {
+                        if (atual1.Coluna < atual2.Coluna)
+                        {
+                            resultado.Inserir(new Celula(atual1.Valor, atual1.Linha, atual1.Coluna, default(Celula), default(Celula)));
+                            atual1 = atual1.Abaixo;
+                        }
+                        else
+                        {
+                            resultado.Inserir(new Celula(atual2.Valor, atual2.Linha, atual2.Coluna, default(Celula), default(Celula)));
+                            atual2 = atual2.Abaixo;
+                        }    
+                    }
+                    while (atual1 == topo1)
+                    {
+                        topo1 = topo1.Direita;
+                        atual1 = topo1.Abaixo;
+                    }
+                    while (atual2 == topo2)
+                    {
+                        topo2 = topo2.Direita;
+                        atual2 = topo2.Abaixo;
+                    }
+
+                }
+                while (topo1 != matriz1.NoCabeca)
+                {
+                    resultado.Inserir(new Celula(atual1.Valor, atual1.Linha, atual1.Coluna, default(Celula), default(Celula)));
+                    atual1 = atual1.Abaixo;
+                    if (atual1 == topo1)
+                    {
+                        topo1 = topo1.Direita;
+                        atual1 = topo1.Abaixo;
+                    }   
+                }
+                while (topo2 != matriz2.NoCabeca)
+                {
+                    resultado.Inserir(new Celula(atual2.Valor, atual2.Linha, atual2.Coluna, default(Celula), default(Celula)));
+                    atual2 = atual2.Abaixo;
+                    if (atual2 == topo2)
+                    {
+                        topo2 = topo2.Direita;
+                        atual2 = topo2.Abaixo;
+                    }
+                }
+            }
+            else
+                throw new Exception("Matrizes com Dimensões diferentes não podem ser somadas");
+
+            return resultado;
         }
     }
 }

@@ -202,6 +202,14 @@ public class MatrizEsparsa
                     achouAcima = true;
                 }
                 else
+                if (atualC.Abaixo.Coluna == celulaNova.Coluna &&
+                    atualC.Abaixo.Linha == celulaNova.Linha)
+                {
+                    cima = atualC;
+                    baixo = atualC.Abaixo.Abaixo; // talvez esteja errado
+                    achouAcima = true;
+                }
+                else
                 if (atualC.Abaixo.Linha < celulaNova.Linha)
                 {
                     atualC = atualC.Abaixo;
@@ -233,6 +241,14 @@ public class MatrizEsparsa
                 }
                 if (atualL.Direita.Valor == celulaNova.Valor &&
                     atualL.Direita.Coluna == celulaNova.Coluna &&
+                    atualL.Direita.Linha == celulaNova.Linha)
+                {
+                    achouEsq = true;
+                    esq = atualL;
+                    dir = atualL.Direita.Direita;
+                }
+                else
+                if (atualL.Direita.Coluna == celulaNova.Coluna &&
                     atualL.Direita.Linha == celulaNova.Linha)
                 {
                     achouEsq = true;

@@ -32,14 +32,15 @@
             this.btnProcurar = new System.Windows.Forms.Button();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.gbOperacoes = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbxQualMatriz = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnSomarMatrizes = new System.Windows.Forms.Button();
             this.gbMultiplicar = new System.Windows.Forms.GroupBox();
+            this.btnMultiplicarMatrizes = new System.Windows.Forms.Button();
             this.gbSomar = new System.Windows.Forms.GroupBox();
+            this.btnSomarConstante = new System.Windows.Forms.Button();
             this.txtConstSomar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,24 +49,23 @@
             this.txtColuna = new System.Windows.Forms.TextBox();
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cbxQualMatriz = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvMatriz3 = new System.Windows.Forms.DataGridView();
             this.dgvMatriz2 = new System.Windows.Forms.DataGridView();
             this.btnArquivo1 = new System.Windows.Forms.Button();
             this.btnArquivo2 = new System.Windows.Forms.Button();
-            this.btnSomarConstante = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnSomarMatrizes = new System.Windows.Forms.Button();
-            this.btnMultiplicarMatrizes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz1)).BeginInit();
             this.gbOperacoes.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.gbMultiplicar.SuspendLayout();
             this.gbSomar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz2)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvMatriz1
@@ -122,37 +122,6 @@
             this.gbOperacoes.TabStop = false;
             this.gbOperacoes.Text = "Operações";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.cbxQualMatriz);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.groupBox1.Location = new System.Drawing.Point(326, 340);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(308, 290);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Qual Matriz?";
-            // 
-            // cbxQualMatriz
-            // 
-            this.cbxQualMatriz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxQualMatriz.FormattingEnabled = true;
-            this.cbxQualMatriz.Location = new System.Drawing.Point(100, 39);
-            this.cbxQualMatriz.Name = "cbxQualMatriz";
-            this.cbxQualMatriz.Size = new System.Drawing.Size(174, 25);
-            this.cbxQualMatriz.TabIndex = 14;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(35, 42);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(50, 17);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Matriz:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -180,6 +149,28 @@
             this.label9.TabIndex = 11;
             this.label9.Text = "Coluna:";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.btnSomarMatrizes);
+            this.groupBox2.Location = new System.Drawing.Point(6, 311);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(255, 127);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Somar Matrizes";
+            // 
+            // btnSomarMatrizes
+            // 
+            this.btnSomarMatrizes.Location = new System.Drawing.Point(9, 41);
+            this.btnSomarMatrizes.Name = "btnSomarMatrizes";
+            this.btnSomarMatrizes.Size = new System.Drawing.Size(236, 44);
+            this.btnSomarMatrizes.TabIndex = 16;
+            this.btnSomarMatrizes.Text = "Somar";
+            this.btnSomarMatrizes.UseVisualStyleBackColor = true;
+            this.btnSomarMatrizes.Click += new System.EventHandler(this.btnSomarMatrizes_Click);
+            // 
             // gbMultiplicar
             // 
             this.gbMultiplicar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -191,6 +182,15 @@
             this.gbMultiplicar.TabIndex = 4;
             this.gbMultiplicar.TabStop = false;
             this.gbMultiplicar.Text = "Multiplicar Matrizes";
+            // 
+            // btnMultiplicarMatrizes
+            // 
+            this.btnMultiplicarMatrizes.Location = new System.Drawing.Point(9, 43);
+            this.btnMultiplicarMatrizes.Name = "btnMultiplicarMatrizes";
+            this.btnMultiplicarMatrizes.Size = new System.Drawing.Size(236, 44);
+            this.btnMultiplicarMatrizes.TabIndex = 16;
+            this.btnMultiplicarMatrizes.Text = "Multiplicar";
+            this.btnMultiplicarMatrizes.UseVisualStyleBackColor = true;
             // 
             // gbSomar
             // 
@@ -207,6 +207,16 @@
             this.gbSomar.TabIndex = 3;
             this.gbSomar.TabStop = false;
             this.gbSomar.Text = "Somar Constante";
+            // 
+            // btnSomarConstante
+            // 
+            this.btnSomarConstante.Location = new System.Drawing.Point(10, 83);
+            this.btnSomarConstante.Name = "btnSomarConstante";
+            this.btnSomarConstante.Size = new System.Drawing.Size(236, 44);
+            this.btnSomarConstante.TabIndex = 15;
+            this.btnSomarConstante.Text = "Somar";
+            this.btnSomarConstante.UseVisualStyleBackColor = true;
+            this.btnSomarConstante.Click += new System.EventHandler(this.btnSomar_Click);
             // 
             // txtConstSomar
             // 
@@ -276,20 +286,60 @@
             this.btnRemover.UseVisualStyleBackColor = true;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
-            // dataGridView1
+            // groupBox1
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 340);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(308, 290);
-            this.dataGridView1.TabIndex = 0;
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.cbxQualMatriz);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.groupBox1.Location = new System.Drawing.Point(326, 340);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(308, 290);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Qual Matriz?";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(38, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(236, 44);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Esvaziar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // cbxQualMatriz
+            // 
+            this.cbxQualMatriz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxQualMatriz.FormattingEnabled = true;
+            this.cbxQualMatriz.Location = new System.Drawing.Point(100, 39);
+            this.cbxQualMatriz.Name = "cbxQualMatriz";
+            this.cbxQualMatriz.Size = new System.Drawing.Size(174, 25);
+            this.cbxQualMatriz.TabIndex = 14;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(35, 42);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 17);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Matriz:";
+            // 
+            // dgvMatriz3
+            // 
+            this.dgvMatriz3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMatriz3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvMatriz3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvMatriz3.ColumnHeadersVisible = false;
+            this.dgvMatriz3.Location = new System.Drawing.Point(12, 340);
+            this.dgvMatriz3.MultiSelect = false;
+            this.dgvMatriz3.Name = "dgvMatriz3";
+            this.dgvMatriz3.ReadOnly = true;
+            this.dgvMatriz3.RowHeadersVisible = false;
+            this.dgvMatriz3.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvMatriz3.Size = new System.Drawing.Size(308, 290);
+            this.dgvMatriz3.TabIndex = 0;
             // 
             // dgvMatriz2
             // 
@@ -328,55 +378,6 @@
             this.btnArquivo2.UseVisualStyleBackColor = true;
             this.btnArquivo2.Click += new System.EventHandler(this.btnArquivo2_Click);
             // 
-            // btnSomarConstante
-            // 
-            this.btnSomarConstante.Location = new System.Drawing.Point(10, 83);
-            this.btnSomarConstante.Name = "btnSomarConstante";
-            this.btnSomarConstante.Size = new System.Drawing.Size(236, 44);
-            this.btnSomarConstante.TabIndex = 15;
-            this.btnSomarConstante.Text = "Somar";
-            this.btnSomarConstante.UseVisualStyleBackColor = true;
-            this.btnSomarConstante.Click += new System.EventHandler(this.btnSomar_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(38, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(236, 44);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Esvaziar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.btnSomarMatrizes);
-            this.groupBox2.Location = new System.Drawing.Point(6, 311);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 127);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Somar Matrizes";
-            // 
-            // btnSomarMatrizes
-            // 
-            this.btnSomarMatrizes.Location = new System.Drawing.Point(9, 41);
-            this.btnSomarMatrizes.Name = "btnSomarMatrizes";
-            this.btnSomarMatrizes.Size = new System.Drawing.Size(236, 44);
-            this.btnSomarMatrizes.TabIndex = 16;
-            this.btnSomarMatrizes.Text = "Somar";
-            this.btnSomarMatrizes.UseVisualStyleBackColor = true;
-            // 
-            // btnMultiplicarMatrizes
-            // 
-            this.btnMultiplicarMatrizes.Location = new System.Drawing.Point(9, 43);
-            this.btnMultiplicarMatrizes.Name = "btnMultiplicarMatrizes";
-            this.btnMultiplicarMatrizes.Size = new System.Drawing.Size(236, 44);
-            this.btnMultiplicarMatrizes.TabIndex = 16;
-            this.btnMultiplicarMatrizes.Text = "Multiplicar";
-            this.btnMultiplicarMatrizes.UseVisualStyleBackColor = true;
-            // 
             // frmMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,7 +387,7 @@
             this.Controls.Add(this.btnArquivo2);
             this.Controls.Add(this.btnArquivo1);
             this.Controls.Add(this.gbOperacoes);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvMatriz3);
             this.Controls.Add(this.dgvMatriz2);
             this.Controls.Add(this.dgvMatriz1);
             this.Name = "frmMatriz";
@@ -394,14 +395,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz1)).EndInit();
             this.gbOperacoes.ResumeLayout(false);
             this.gbOperacoes.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.gbMultiplicar.ResumeLayout(false);
             this.gbSomar.ResumeLayout(false);
             this.gbSomar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -419,7 +420,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtColunaSoma;
         private System.Windows.Forms.OpenFileDialog dlgAbrir;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMatriz3;
         private System.Windows.Forms.DataGridView dgvMatriz2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
