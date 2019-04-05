@@ -235,7 +235,15 @@ namespace _18015_18180_Projeto1ED
 
         private void btnSomarMatrizes_Click(object sender, EventArgs e)
         {
-            Exibir(dgvMatriz3, SomarMatrizes(matriz1, matriz2));
+            try
+            {
+                Exibir(dgvMatriz3, SomarMatrizes(matriz1, matriz2));
+            }
+            catch(Exception erro)
+            {
+                MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro na soma de matrizes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         public void Exibir(DataGridView dgv, MatrizEsparsa matriz)
@@ -294,7 +302,7 @@ namespace _18015_18180_Projeto1ED
                     if (atual2.Linha < atual1.Linha && atual2.Coluna == atual1.Coluna)
                     {
                         resultado.Inserir(new Celula(atual2.Valor, atual2.Linha, atual2.Coluna, default(Celula), default(Celula)));
-                        atual1 = atual1.Abaixo;
+                        atual2 = atual2.Abaixo;
                     }
                     else
                     if (atual1.Coluna != atual2.Coluna)
@@ -344,7 +352,7 @@ namespace _18015_18180_Projeto1ED
                 }
             }
             else
-                throw new Exception("Matrizes com Dimensões diferentes não podem ser somadas");
+                throw new Exception("Matrizes com dimensões diferentes não podem ser somadas");
 
             return resultado;
         }
