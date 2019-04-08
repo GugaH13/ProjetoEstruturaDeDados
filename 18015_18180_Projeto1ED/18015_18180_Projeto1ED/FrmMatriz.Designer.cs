@@ -50,7 +50,7 @@
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnEsvaziar = new System.Windows.Forms.Button();
             this.cbxQualMatriz = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
@@ -58,6 +58,12 @@
             this.dgvMatriz2 = new System.Windows.Forms.DataGridView();
             this.btnArquivo1 = new System.Windows.Forms.Button();
             this.btnArquivo2 = new System.Windows.Forms.Button();
+            this.btnCriarMatriz1 = new System.Windows.Forms.Button();
+            this.btnCriarMatriz2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz1)).BeginInit();
             this.gbOperacoes.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -167,7 +173,7 @@
             this.btnSomarMatrizes.Name = "btnSomarMatrizes";
             this.btnSomarMatrizes.Size = new System.Drawing.Size(236, 44);
             this.btnSomarMatrizes.TabIndex = 16;
-            this.btnSomarMatrizes.Text = "Somar";
+            this.btnSomarMatrizes.Text = "Somar Matrizes";
             this.btnSomarMatrizes.UseVisualStyleBackColor = true;
             this.btnSomarMatrizes.Click += new System.EventHandler(this.btnSomarMatrizes_Click);
             // 
@@ -189,8 +195,9 @@
             this.btnMultiplicarMatrizes.Name = "btnMultiplicarMatrizes";
             this.btnMultiplicarMatrizes.Size = new System.Drawing.Size(236, 44);
             this.btnMultiplicarMatrizes.TabIndex = 16;
-            this.btnMultiplicarMatrizes.Text = "Multiplicar";
+            this.btnMultiplicarMatrizes.Text = "Multiplicar Matrizes";
             this.btnMultiplicarMatrizes.UseVisualStyleBackColor = true;
+            this.btnMultiplicarMatrizes.Click += new System.EventHandler(this.btnMultiplicarMatrizes_Click);
             // 
             // gbSomar
             // 
@@ -214,7 +221,7 @@
             this.btnSomarConstante.Name = "btnSomarConstante";
             this.btnSomarConstante.Size = new System.Drawing.Size(236, 44);
             this.btnSomarConstante.TabIndex = 15;
-            this.btnSomarConstante.Text = "Somar";
+            this.btnSomarConstante.Text = "Somar Constante";
             this.btnSomarConstante.UseVisualStyleBackColor = true;
             this.btnSomarConstante.Click += new System.EventHandler(this.btnSomar_Click);
             // 
@@ -249,8 +256,6 @@
             this.txtColunaSoma.Name = "txtColunaSoma";
             this.txtColunaSoma.Size = new System.Drawing.Size(100, 23);
             this.txtColunaSoma.TabIndex = 9;
-            this.txtColunaSoma.TextChanged += new System.EventHandler(this.txtColunaSoma_TextChanged);
-            this.txtColunaSoma.Leave += new System.EventHandler(this.txtColunaSoma_Leave);
             // 
             // txtLinha
             // 
@@ -288,7 +293,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.btnCriarMatriz2);
+            this.groupBox1.Controls.Add(this.btnCriarMatriz1);
+            this.groupBox1.Controls.Add(this.btnEsvaziar);
             this.groupBox1.Controls.Add(this.cbxQualMatriz);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
@@ -297,30 +308,31 @@
             this.groupBox1.Size = new System.Drawing.Size(308, 290);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Qual Matriz?";
+            this.groupBox1.Text = "Matrizes";
             // 
-            // button1
+            // btnEsvaziar
             // 
-            this.button1.Location = new System.Drawing.Point(38, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(236, 44);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Esvaziar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnEsvaziar.Location = new System.Drawing.Point(197, 162);
+            this.btnEsvaziar.Name = "btnEsvaziar";
+            this.btnEsvaziar.Size = new System.Drawing.Size(76, 50);
+            this.btnEsvaziar.TabIndex = 16;
+            this.btnEsvaziar.Text = "Esvaziar";
+            this.btnEsvaziar.UseVisualStyleBackColor = true;
             // 
             // cbxQualMatriz
             // 
             this.cbxQualMatriz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxQualMatriz.Enabled = false;
             this.cbxQualMatriz.FormattingEnabled = true;
-            this.cbxQualMatriz.Location = new System.Drawing.Point(100, 39);
+            this.cbxQualMatriz.Location = new System.Drawing.Point(100, 108);
             this.cbxQualMatriz.Name = "cbxQualMatriz";
-            this.cbxQualMatriz.Size = new System.Drawing.Size(174, 25);
+            this.cbxQualMatriz.Size = new System.Drawing.Size(172, 25);
             this.cbxQualMatriz.TabIndex = 14;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(35, 42);
+            this.label12.Location = new System.Drawing.Point(33, 111);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(50, 17);
             this.label12.TabIndex = 13;
@@ -377,6 +389,58 @@
             this.btnArquivo2.Text = "Arquivo 2";
             this.btnArquivo2.UseVisualStyleBackColor = true;
             this.btnArquivo2.Click += new System.EventHandler(this.btnArquivo2_Click);
+            // 
+            // btnCriarMatriz1
+            // 
+            this.btnCriarMatriz1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.btnCriarMatriz1.Location = new System.Drawing.Point(33, 162);
+            this.btnCriarMatriz1.Name = "btnCriarMatriz1";
+            this.btnCriarMatriz1.Size = new System.Drawing.Size(76, 50);
+            this.btnCriarMatriz1.TabIndex = 17;
+            this.btnCriarMatriz1.Text = "Criar Matriz 1";
+            this.btnCriarMatriz1.UseVisualStyleBackColor = true;
+            // 
+            // btnCriarMatriz2
+            // 
+            this.btnCriarMatriz2.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.btnCriarMatriz2.Location = new System.Drawing.Point(115, 162);
+            this.btnCriarMatriz2.Name = "btnCriarMatriz2";
+            this.btnCriarMatriz2.Size = new System.Drawing.Size(76, 50);
+            this.btnCriarMatriz2.TabIndex = 17;
+            this.btnCriarMatriz2.Text = "Criar Matriz 2";
+            this.btnCriarMatriz2.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(33, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Linhas: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(33, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Colunas:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(100, 79);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(172, 23);
+            this.textBox1.TabIndex = 18;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(100, 50);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(172, 23);
+            this.textBox2.TabIndex = 19;
             // 
             // frmMatriz
             // 
@@ -438,7 +502,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnSomarMatrizes;
         private System.Windows.Forms.Button btnMultiplicarMatrizes;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEsvaziar;
+        private System.Windows.Forms.Button btnCriarMatriz2;
+        private System.Windows.Forms.Button btnCriarMatriz1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

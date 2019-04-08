@@ -20,48 +20,22 @@ namespace _18015_18180_Projeto1ED
             InitializeComponent();
         }
 
-        private void txtColunaSoma_TextChanged(object sender, EventArgs e)
-        {
-            // txtChange(txtColunaSoma, txtLinhaSoma);
-        }
-        static void txtChange(TextBox txtAlterando, TextBox txtBloqueado)
-        {
-            if (txtAlterando.Text == "")
-                txtBloqueado.Enabled = true;
-            else
-                txtBloqueado.Enabled = false;
-        }
-        static void txtLeave(TextBox txtDeixado, TextBox txtOutro)
-        {
-            if (txtDeixado.Text.Trim() == "")
-            {
-                txtDeixado.Text = "";
-                txtOutro.Enabled = true;
-            }
-        }
-
-        private void txtLinhaSoma_Leave(object sender, EventArgs e)
-        {
-            //txtLeave(txtLinhaSoma,txtColunaSoma);
-        }
-
-        private void txtColunaSoma_Leave(object sender, EventArgs e)
-        {
-            // txtLeave(txtColunaSoma,txtLinhaSoma);
-        }
-
         private void btnArquivo_Click(object sender, EventArgs e)
         {
             FazerLeitura(ref matriz1, dgvMatriz1);
-            cbxQualMatriz.Items.Add("Matriz 1");
+            if (cbxQualMatriz.Items.Contains("Matriz 1") == false)
+                cbxQualMatriz.Items.Add("Matriz 1");
             cbxQualMatriz.SelectedItem = "Matriz 1";
+            cbxQualMatriz.Enabled = true;
         }
 
         private void btnArquivo2_Click(object sender, EventArgs e)
         {
             FazerLeitura(ref matriz2, dgvMatriz2);
-            cbxQualMatriz.Items.Add("Matriz 2");
+            if (!cbxQualMatriz.Items.Contains("Matriz 2"))
+                cbxQualMatriz.Items.Add("Matriz 2");
             cbxQualMatriz.SelectedItem = "Matriz 2";
+            cbxQualMatriz.Enabled = true;
         }
 
         public void FazerLeitura(ref MatrizEsparsa qualMatriz, DataGridView dgv)
@@ -239,11 +213,11 @@ namespace _18015_18180_Projeto1ED
             {
                 Exibir(dgvMatriz3, SomarMatrizes(matriz1, matriz2));
             }
-            catch(Exception erro)
+            catch (Exception erro)
             {
                 MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro na soma de matrizes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
 
         public void Exibir(DataGridView dgv, MatrizEsparsa matriz)
@@ -271,6 +245,19 @@ namespace _18015_18180_Projeto1ED
                 atual = atualColuna.Abaixo;
             }
         }
+
+        private void btnMultiplicarMatrizes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Exibir(dgvMatriz3, MultiplicarMatrizes(matriz1, matriz2));
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro na soma de matrizes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         public MatrizEsparsa SomarMatrizes(MatrizEsparsa matriz1, MatrizEsparsa matriz2)
         {
             MatrizEsparsa resultado;
@@ -316,7 +303,7 @@ namespace _18015_18180_Projeto1ED
                         {
                             resultado.Inserir(new Celula(atual2.Valor, atual2.Linha, atual2.Coluna, default(Celula), default(Celula)));
                             atual2 = atual2.Abaixo;
-                        }    
+                        }
                     }
                     while (atual1 == topo1)
                     {
@@ -338,7 +325,7 @@ namespace _18015_18180_Projeto1ED
                     {
                         topo1 = topo1.Direita;
                         atual1 = topo1.Abaixo;
-                    }   
+                    }
                 }
                 while (topo2 != matriz2.NoCabeca)
                 {
@@ -352,7 +339,38 @@ namespace _18015_18180_Projeto1ED
                 }
             }
             else
-                throw new Exception("Matrizes com dimensões diferentes não podem ser somadas");
+                throw new Exception("Matrizes com dimensões diferentes não podem ser somadas!");
+
+            return resultado;
+        }
+
+        public MatrizEsparsa MultiplicarMatrizes(MatrizEsparsa matriz1, MatrizEsparsa matriz2)
+        {
+            MatrizEsparsa resultado;
+
+            if (matriz1.NumeroColunas == matriz2.NumeroLinhas)
+            {
+                resultado = new MatrizEsparsa(matriz1.NumeroLinhas, matriz2.NumeroColunas);
+                double valorCelulaAInserir = 0;
+                int quantoPercorrer = matriz1.NumeroColunas;
+
+                for(int linha = 1; linha <= resultado.NumeroLinhas; linha++)
+                {
+                    for(int coluna = 1; coluna <= resultado.NumeroColunas; coluna++)
+                    {
+                        for (int indice = 1; indice <= quantoPercorrer; indice++)
+                        {
+                            valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * matriz2.Procurar(coluna, indice).Valor;
+                        }
+                        if (valorCelulaAInserir != 0)
+                            resultado.Inserir(new Celula(valorCelulaAInserir, linha, coluna, null, null));
+                        valorCelulaAInserir = 0;
+                    }
+                }
+                
+            }
+            else
+                throw new Exception("O número de colunas da matriz A não corresponde ao número de linhas da matriz B!");
 
             return resultado;
         }

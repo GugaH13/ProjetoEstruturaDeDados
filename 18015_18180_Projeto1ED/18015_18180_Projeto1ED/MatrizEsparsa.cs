@@ -60,7 +60,7 @@ public class MatrizEsparsa
                 atual = atual.Abaixo;
         }
 
-        return default(Celula);
+        return new Celula(0, 0, 0, null, null);
     }
 
     public void Inserir(Celula novaCelula)
