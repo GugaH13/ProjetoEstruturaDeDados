@@ -96,6 +96,11 @@ public class MatrizEsparsa
         else
             throw new Exception("Impossível remover célula nula!");
     }
+    public void EsvaziarMatriz()
+    {
+        this.noCabeca = null;
+        CriarNosCabeca(numeroLinhas, numeroColunas);
+    }
     protected void CriarNosCabeca(int nLinhas, int nColunas)
     {
         int c = default(int);

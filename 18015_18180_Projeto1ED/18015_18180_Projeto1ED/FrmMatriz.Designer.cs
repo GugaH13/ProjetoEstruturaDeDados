@@ -50,6 +50,12 @@
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtLinhas = new System.Windows.Forms.TextBox();
+            this.txtColunas = new System.Windows.Forms.TextBox();
+            this.btnCriarMatriz2 = new System.Windows.Forms.Button();
+            this.btnCriarMatriz1 = new System.Windows.Forms.Button();
             this.btnEsvaziar = new System.Windows.Forms.Button();
             this.cbxQualMatriz = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,12 +64,6 @@
             this.dgvMatriz2 = new System.Windows.Forms.DataGridView();
             this.btnArquivo1 = new System.Windows.Forms.Button();
             this.btnArquivo2 = new System.Windows.Forms.Button();
-            this.btnCriarMatriz1 = new System.Windows.Forms.Button();
-            this.btnCriarMatriz2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatriz1)).BeginInit();
             this.gbOperacoes.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -295,8 +295,8 @@
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtLinhas);
+            this.groupBox1.Controls.Add(this.txtColunas);
             this.groupBox1.Controls.Add(this.btnCriarMatriz2);
             this.groupBox1.Controls.Add(this.btnCriarMatriz1);
             this.groupBox1.Controls.Add(this.btnEsvaziar);
@@ -310,6 +310,60 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Matrizes";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(33, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Linhas: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(33, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Colunas:";
+            // 
+            // txtLinhas
+            // 
+            this.txtLinhas.Location = new System.Drawing.Point(100, 79);
+            this.txtLinhas.Name = "txtLinhas";
+            this.txtLinhas.Size = new System.Drawing.Size(172, 23);
+            this.txtLinhas.TabIndex = 18;
+            // 
+            // txtColunas
+            // 
+            this.txtColunas.Location = new System.Drawing.Point(100, 50);
+            this.txtColunas.Name = "txtColunas";
+            this.txtColunas.Size = new System.Drawing.Size(172, 23);
+            this.txtColunas.TabIndex = 19;
+            // 
+            // btnCriarMatriz2
+            // 
+            this.btnCriarMatriz2.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.btnCriarMatriz2.Location = new System.Drawing.Point(115, 162);
+            this.btnCriarMatriz2.Name = "btnCriarMatriz2";
+            this.btnCriarMatriz2.Size = new System.Drawing.Size(76, 50);
+            this.btnCriarMatriz2.TabIndex = 17;
+            this.btnCriarMatriz2.Text = "Criar Matriz 2";
+            this.btnCriarMatriz2.UseVisualStyleBackColor = true;
+            this.btnCriarMatriz2.Click += new System.EventHandler(this.btnCriarMatriz2_Click);
+            // 
+            // btnCriarMatriz1
+            // 
+            this.btnCriarMatriz1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.btnCriarMatriz1.Location = new System.Drawing.Point(33, 162);
+            this.btnCriarMatriz1.Name = "btnCriarMatriz1";
+            this.btnCriarMatriz1.Size = new System.Drawing.Size(76, 50);
+            this.btnCriarMatriz1.TabIndex = 17;
+            this.btnCriarMatriz1.Text = "Criar Matriz 1";
+            this.btnCriarMatriz1.UseVisualStyleBackColor = true;
+            this.btnCriarMatriz1.Click += new System.EventHandler(this.btnCriarMatriz1_Click);
+            // 
             // btnEsvaziar
             // 
             this.btnEsvaziar.Location = new System.Drawing.Point(197, 162);
@@ -318,6 +372,7 @@
             this.btnEsvaziar.TabIndex = 16;
             this.btnEsvaziar.Text = "Esvaziar";
             this.btnEsvaziar.UseVisualStyleBackColor = true;
+            this.btnEsvaziar.Click += new System.EventHandler(this.btnEsvaziar_Click);
             // 
             // cbxQualMatriz
             // 
@@ -390,58 +445,6 @@
             this.btnArquivo2.UseVisualStyleBackColor = true;
             this.btnArquivo2.Click += new System.EventHandler(this.btnArquivo2_Click);
             // 
-            // btnCriarMatriz1
-            // 
-            this.btnCriarMatriz1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnCriarMatriz1.Location = new System.Drawing.Point(33, 162);
-            this.btnCriarMatriz1.Name = "btnCriarMatriz1";
-            this.btnCriarMatriz1.Size = new System.Drawing.Size(76, 50);
-            this.btnCriarMatriz1.TabIndex = 17;
-            this.btnCriarMatriz1.Text = "Criar Matriz 1";
-            this.btnCriarMatriz1.UseVisualStyleBackColor = true;
-            // 
-            // btnCriarMatriz2
-            // 
-            this.btnCriarMatriz2.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnCriarMatriz2.Location = new System.Drawing.Point(115, 162);
-            this.btnCriarMatriz2.Name = "btnCriarMatriz2";
-            this.btnCriarMatriz2.Size = new System.Drawing.Size(76, 50);
-            this.btnCriarMatriz2.TabIndex = 17;
-            this.btnCriarMatriz2.Text = "Criar Matriz 2";
-            this.btnCriarMatriz2.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 17);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Linhas: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 17);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Colunas:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(100, 79);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 23);
-            this.textBox1.TabIndex = 18;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(100, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(172, 23);
-            this.textBox2.TabIndex = 19;
-            // 
             // frmMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,8 +510,8 @@
         private System.Windows.Forms.Button btnCriarMatriz1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtLinhas;
+        private System.Windows.Forms.TextBox txtColunas;
     }
 }
 

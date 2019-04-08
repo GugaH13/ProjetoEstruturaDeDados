@@ -346,56 +346,12 @@ namespace _18015_18180_Projeto1ED
 
         private void btnCriarMatriz1_Click(object sender, EventArgs e)
         {
-            if (txtLinhas.Text.Trim() != "" && txtColunas.Text.Trim() != "")
-            {
-                CriarMatriz(ref matriz1);
-                if (cbxQualMatriz.Items.Contains("Matriz 1") == false)
-                    cbxQualMatriz.Items.Add("Matriz 1");
-                cbxQualMatriz.SelectedItem = "Matriz 1";
-                cbxQualMatriz.Enabled = true;
-                Exibir(dgvMatriz1, matriz1);
-            }
+
         }
 
-        private void btnCriarMatriz2_Click(object sender, EventArgs e)
-        {
-            if (txtLinhas.Text.Trim() != "" && txtColunas.Text.Trim() != "")
-            {
-                CriarMatriz(ref matriz2);
-                if (cbxQualMatriz.Items.Contains("Matriz 2") == false)
-                    cbxQualMatriz.Items.Add("Matriz 2");
-                cbxQualMatriz.SelectedItem = "Matriz 2";
-                cbxQualMatriz.Enabled = true;
-                Exibir(dgvMatriz2, matriz2);
-            }
-        }
-
-        private void CriarMatriz(ref MatrizEsparsa matriz)
+        public void CriarMatriz(ref MatrizEsparsa matriz)
         {
 
-            matriz = new MatrizEsparsa(int.Parse(txtLinhas.Text), int.Parse(txtColunas.Text));
-            dgvMatriz3.Rows.Clear();
-            dgvMatriz3.Refresh();
-        }
-
-        private void btnEsvaziar_Click(object sender, EventArgs e)
-        {
-            if (cbxQualMatriz.SelectedItem.ToString() == "Matriz 1")
-            {
-                Esvaziar(ref matriz1);
-                Exibir(dgvMatriz1, matriz1);
-            }
-            else
-            {
-                Esvaziar(ref matriz2);
-                Exibir(dgvMatriz2, matriz2);
-            }
-        }
-
-        private void Esvaziar(ref MatrizEsparsa matriz)
-        {
-            if (matriz != null)
-                matriz.EsvaziarMatriz();
         }
 
         public MatrizEsparsa MultiplicarMatrizes(MatrizEsparsa matriz1, MatrizEsparsa matriz2)
@@ -408,9 +364,9 @@ namespace _18015_18180_Projeto1ED
                 double valorCelulaAInserir = 0;
                 int quantoPercorrer = matriz1.NumeroColunas;
 
-                for (int linha = 1; linha <= resultado.NumeroLinhas; linha++)
+                for(int linha = 1; linha <= resultado.NumeroLinhas; linha++)
                 {
-                    for (int coluna = 1; coluna <= resultado.NumeroColunas; coluna++)
+                    for(int coluna = 1; coluna <= resultado.NumeroColunas; coluna++)
                     {
                         for (int indice = 1; indice <= quantoPercorrer; indice++)
                         {
@@ -421,7 +377,7 @@ namespace _18015_18180_Projeto1ED
                         valorCelulaAInserir = 0;
                     }
                 }
-
+                
             }
             else
                 throw new Exception("O número de colunas da matriz A não corresponde ao número de linhas da matriz B!");
