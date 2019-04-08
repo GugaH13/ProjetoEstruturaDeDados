@@ -128,62 +128,7 @@ public class MatrizEsparsa
         anterior.Abaixo.Direita = anterior.Abaixo;
         anterior.Abaixo.Abaixo = this.noCabeca;
     }
-    /* protected void CriarNosCabeca(int nLinhas, int nColunas)
-     {
-         int c = default(int);
-         bool primeiraVez = true;
-         Celula anterior = this.noCabeca;
-         for (int l = 0; l <= nLinhas; l++)
-         {
-             if (l == 0)
-                 for (c = 0; c <= nColunas; c++)
-                 {
-                     if (l == 0 && c == 0)
-                     {
 
-                         this.noCabeca = new Celula(default(double), l, c, default(Celula), default(Celula));
-                         anterior = this.noCabeca;
-                     }
-                     else
-                     {
-                         if (c == nColunas)
-                         {
-                             anterior.Direita = new Celula(default(double), l, c, this.noCabeca, anterior.Direita);
-                             anterior.Direita.Abaixo = anterior.Direita;
-                         }
-                         else
-                         {
-                             anterior.Direita = new Celula(default(double), l, c, default(Celula), anterior.Direita);//como está vazia seu abaixo recebe a si mesma
-                             anterior.Direita.Abaixo = anterior.Direita;
-                             anterior = anterior.Direita;
-                         }
-
-                     }
-                 }
-             else
-             {
-                 if (primeiraVez == true)
-                 {
-                     anterior = this.noCabeca;
-                     primeiraVez = false;
-                     c = 0;
-                 }
-                 if (l == nLinhas)
-                 {
-                     anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
-                     anterior.Abaixo.Direita = anterior.Abaixo;
-                     anterior.Abaixo.Abaixo = this.noCabeca;
-                 }
-                 else
-                 {
-                     anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
-                     anterior.Abaixo.Direita = anterior.Abaixo;
-                     anterior = anterior.Abaixo;
-                 }
-
-             }
-         }
-     }*/
 
     protected bool ExisteDado(Celula celulaNova, ref Celula cima, ref Celula esq, ref Celula dir, ref Celula baixo)
     {
