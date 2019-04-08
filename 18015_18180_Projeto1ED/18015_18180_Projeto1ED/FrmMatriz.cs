@@ -414,7 +414,18 @@ namespace _18015_18180_Projeto1ED
                     {
                         for (int indice = 1; indice <= quantoPercorrer; indice++)
                         {
-                            valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * matriz2.Procurar(coluna, indice).Valor;
+                            if (matriz1.Procurar(indice, linha) == default(Celula))
+                            {
+                                if (matriz2.Procurar(indice, linha) == default(Celula))
+                                    valorCelulaAInserir += 0;
+                                else
+                                    valorCelulaAInserir += 0 * matriz2.Procurar(coluna, indice).Valor;
+                            }
+                            else
+                            if (matriz2.Procurar(indice, linha) == default(Celula))
+                                valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * 0;
+                            else
+                                valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * matriz2.Procurar(coluna, indice).Valor;
                         }
                         if (valorCelulaAInserir != 0)
                             resultado.Inserir(new Celula(valorCelulaAInserir, linha, coluna, null, null));

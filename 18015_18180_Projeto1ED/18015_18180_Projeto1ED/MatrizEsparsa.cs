@@ -54,13 +54,13 @@ public class MatrizEsparsa
         Celula atual = atualColuna.Abaixo;
         while (atual != atualColuna)
         {
-            if(atual.Linha == linha)
+            if (atual.Linha == linha)
                 return atual;
             else
                 atual = atual.Abaixo;
         }
 
-        return new Celula(0, 0, 0, null, null);
+        return default(Celula);
     }
 
     public void Inserir(Celula novaCelula)
@@ -104,59 +104,86 @@ public class MatrizEsparsa
     protected void CriarNosCabeca(int nLinhas, int nColunas)
     {
         int c = default(int);
-        bool primeiraVez = true;
+        int l = 0;
         Celula anterior = this.noCabeca;
-        for (int l = 0; l <= nLinhas; l++)
+        this.noCabeca = new Celula(default(double), l, c, default(Celula), default(Celula));//instanciar noCabeca
+        anterior = this.noCabeca;
+        for (c = 1; c < nColunas; c++)//sabemos que o primeiro já foi criado
         {
-            if (l == 0)
-                for (c = 0; c <= nColunas; c++)
-                {
-                    if (l == 0 && c == 0)
-                    {
-                        
-                        this.noCabeca = new Celula(default(double), l, c, default(Celula), default(Celula));
-                        anterior = this.noCabeca;
-                    }
-                    else
-                    {
-                        if (c == nColunas)
-                        {
-                            anterior.Direita = new Celula(default(double), l, c, this.noCabeca, anterior.Direita);
-                            anterior.Direita.Abaixo = anterior.Direita;
-                        }
-                        else
-                        {
-                            anterior.Direita = new Celula(default(double), l, c, default(Celula), anterior.Direita);//como está vazia seu abaixo recebe a si mesma
-                            anterior.Direita.Abaixo = anterior.Direita;
-                            anterior = anterior.Direita;
-                        }
-
-                    }
-                }
-            else
-            {
-                if (primeiraVez == true)
-                {
-                    anterior = this.noCabeca;
-                    primeiraVez = false;
-                    c = 0;
-                }
-                if (l == nLinhas)
-                {
-                    anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
-                    anterior.Abaixo.Direita = anterior.Abaixo;
-                    anterior.Abaixo.Abaixo = this.noCabeca;
-                }
-                else
-                {
-                    anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
-                    anterior.Abaixo.Direita = anterior.Abaixo;
-                    anterior = anterior.Abaixo;
-                }
-                
-            }
+            anterior.Direita = new Celula(default(double), l, c, default(Celula), anterior.Direita);//como está vazia seu abaixo recebe a si mesma
+            anterior.Direita.Abaixo = anterior.Direita;
+            anterior = anterior.Direita;
         }
+        anterior.Direita = new Celula(default(double), l, c, this.noCabeca, anterior.Direita);//última coluna
+        anterior.Direita.Abaixo = anterior.Direita;
+        anterior = this.noCabeca;
+        c = 0;
+        for (l = 1; l < nLinhas; l++)//já criou todos na linha 0, então vai iniciar na um
+        {
+                anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
+                anterior.Abaixo.Direita = anterior.Abaixo;
+                anterior = anterior.Abaixo;
+        }
+        anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));//é a última linha
+        anterior.Abaixo.Direita = anterior.Abaixo;
+        anterior.Abaixo.Abaixo = this.noCabeca;
     }
+    /* protected void CriarNosCabeca(int nLinhas, int nColunas)
+     {
+         int c = default(int);
+         bool primeiraVez = true;
+         Celula anterior = this.noCabeca;
+         for (int l = 0; l <= nLinhas; l++)
+         {
+             if (l == 0)
+                 for (c = 0; c <= nColunas; c++)
+                 {
+                     if (l == 0 && c == 0)
+                     {
+
+                         this.noCabeca = new Celula(default(double), l, c, default(Celula), default(Celula));
+                         anterior = this.noCabeca;
+                     }
+                     else
+                     {
+                         if (c == nColunas)
+                         {
+                             anterior.Direita = new Celula(default(double), l, c, this.noCabeca, anterior.Direita);
+                             anterior.Direita.Abaixo = anterior.Direita;
+                         }
+                         else
+                         {
+                             anterior.Direita = new Celula(default(double), l, c, default(Celula), anterior.Direita);//como está vazia seu abaixo recebe a si mesma
+                             anterior.Direita.Abaixo = anterior.Direita;
+                             anterior = anterior.Direita;
+                         }
+
+                     }
+                 }
+             else
+             {
+                 if (primeiraVez == true)
+                 {
+                     anterior = this.noCabeca;
+                     primeiraVez = false;
+                     c = 0;
+                 }
+                 if (l == nLinhas)
+                 {
+                     anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
+                     anterior.Abaixo.Direita = anterior.Abaixo;
+                     anterior.Abaixo.Abaixo = this.noCabeca;
+                 }
+                 else
+                 {
+                     anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
+                     anterior.Abaixo.Direita = anterior.Abaixo;
+                     anterior = anterior.Abaixo;
+                 }
+
+             }
+         }
+     }*/
 
     protected bool ExisteDado(Celula celulaNova, ref Celula cima, ref Celula esq, ref Celula dir, ref Celula baixo)
     {
@@ -197,7 +224,7 @@ public class MatrizEsparsa
                     baixo = atualC.Abaixo;
                 }
                 else
-                if (atualC.Abaixo.Valor == celulaNova.Valor && 
+                if (atualC.Abaixo.Valor == celulaNova.Valor &&
                     atualC.Abaixo.Coluna == celulaNova.Coluna &&
                     atualC.Abaixo.Linha == celulaNova.Linha)
                 {
@@ -220,7 +247,7 @@ public class MatrizEsparsa
                     atualC = atualC.Abaixo;
                 }
                 else
-                if (atualC.Abaixo.Linha > celulaNova.Linha) 
+                if (atualC.Abaixo.Linha > celulaNova.Linha)
                 {
                     cima = atualC;
                     achou = false;
@@ -261,8 +288,8 @@ public class MatrizEsparsa
                     dir = atualL.Direita.Direita;
                 }
                 else
-                atualL = atualL.Direita;
-                
+                    atualL = atualL.Direita;
+
             }
 
         }
@@ -288,12 +315,12 @@ public class MatrizEsparsa
                 Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
                 linhaAtual++;
             }
-		    else
-		    {
+            else
+            {
                 atual.Valor += valor;
                 if (atual.Valor == 0)
                 {
-                    RemoverCelula(atual.Coluna,atual.Linha);
+                    RemoverCelula(atual.Coluna, atual.Linha);
                 }
                 atual = atual.Abaixo;
                 if (atual.Linha == 0)
@@ -304,21 +331,19 @@ public class MatrizEsparsa
             }
 
         }
-        if (linhaAtual == NumeroLinhas)
+        if (Procurar(atualColuna.Coluna, linhaAtual) != default(Celula))
         {
-            if (Procurar(atualColuna.Coluna, linhaAtual) != default(Celula))
+            Procurar(atualColuna.Coluna, linhaAtual).Valor += valor;
+            if (Procurar(atualColuna.Coluna, linhaAtual).Valor == 0)
             {
-                Procurar(atualColuna.Coluna, linhaAtual).Valor += valor;
-                if (Procurar(atualColuna.Coluna, linhaAtual).Valor == 0)
-                {
-                    RemoverCelula(atualColuna.Coluna, linhaAtual);
-                }
+                RemoverCelula(atualColuna.Coluna, linhaAtual);
             }
-            else
-            {
-                Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
-            }
-            
         }
+        else
+        {
+            Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
+        }
+
+        
     }
 }
