@@ -243,7 +243,7 @@ public class MatrizEsparsa
     }
     public void SomarEmColuna(int c, double valor)
     {
-        if (c > numeroColunas || c < numeroColunas)
+        if (c >= numeroColunas || c <= 0)
             throw new Exception("Fora do intervalo!");
 
         Celula atualColuna = NoCabeca.Direita;

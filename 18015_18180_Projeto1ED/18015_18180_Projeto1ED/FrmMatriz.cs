@@ -176,12 +176,13 @@ namespace _18015_18180_Projeto1ED
             {
                 if (cbxMatrizSomarConstante.SelectedItem.ToString() == "Matriz 1")
                 {
-                    matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
+                    var cu = double.Parse(txtConstSomar.Text.Trim());
+                    matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), double.Parse(txtConstSomar.Text));
                     Exibir(dgvMatriz1, matriz1);
                 }
                 else
                 {
-                    matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
+                    matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text), double.Parse(txtConstSomar.Text));
                     Exibir(dgvMatriz2, matriz2);
                 }
             }
