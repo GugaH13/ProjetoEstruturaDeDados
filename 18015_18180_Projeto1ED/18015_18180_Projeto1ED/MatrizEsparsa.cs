@@ -36,9 +36,9 @@ public class MatrizEsparsa
     {
         bool vazia = true;
         Celula atualC = noCabeca.Direita;
-        while (atualC != noCabeca && vazia == true)
+        while (atualC != noCabeca && vazia == true)//for para percorrer as colunas enquanto não encontrar elementos ou finalizar a matriz
         {
-            if (atualC.Abaixo != atualC)
+            if (atualC.Abaixo != atualC)//se não apontar para ele tem algum item
                 vazia = false;
             atualC = atualC.Direita;
         }
@@ -48,7 +48,7 @@ public class MatrizEsparsa
     public Celula Procurar(int coluna, int linha)
     {
         Celula atualColuna = this.NoCabeca.Direita;
-        while (atualColuna.Coluna != coluna)
+        while (atualColuna.Coluna != coluna)// posicionar atual coluna na coluna do item procurado 
             atualColuna = atualColuna.Direita;
 
         Celula atual = atualColuna.Abaixo;
@@ -57,10 +57,10 @@ public class MatrizEsparsa
             if (atual.Linha == linha)
                 return atual;
             else
-                atual = atual.Abaixo;
+                atual = atual.Abaixo;//vai para baixo até chegar a linha procurada
         }
 
-        return default(Celula);
+        return default(Celula);// se não achar retorna o default(Celula)
     }
 
     public void Inserir(Celula novaCelula)
@@ -69,7 +69,7 @@ public class MatrizEsparsa
         {
             Celula esq, dir, cima, baixo;
             esq = dir = cima = baixo = null;
-            if (!ExisteDado(novaCelula, ref cima, ref esq, ref dir, ref baixo))
+            if (!ExisteDado(novaCelula, ref cima, ref esq, ref dir, ref baixo))//baixo,cima,esquerda,direita configurados
             {
                 cima.Abaixo = novaCelula;
                 esq.Direita = novaCelula;
@@ -87,7 +87,7 @@ public class MatrizEsparsa
         {
             Celula esq, dir, cima, baixo;
             esq = dir = cima = baixo = null;
-            if (ExisteDado(celulaARemover, ref cima, ref esq, ref dir, ref baixo))
+            if (ExisteDado(celulaARemover, ref cima, ref esq, ref dir, ref baixo))//baixo,cima,esquerda,direita configurados
             {
                 cima.Abaixo = baixo;
                 esq.Direita = dir;
@@ -98,8 +98,8 @@ public class MatrizEsparsa
     }
     public void EsvaziarMatriz()
     {
-        this.noCabeca = null;
-        CriarNosCabeca(numeroLinhas, numeroColunas);
+        this.noCabeca = null;//anula para o garbage collector remover os dados
+        CriarNosCabeca(numeroLinhas, numeroColunas);//recria
     }
     protected void CriarNosCabeca(int nLinhas, int nColunas)
     {
@@ -147,11 +147,11 @@ public class MatrizEsparsa
             atualL = noCabeca.Abaixo;
             while (atualC.Coluna != celulaNova.Coluna || atualL.Linha != celulaNova.Linha)
             {
-                if (atualC.Coluna != celulaNova.Coluna)
+                if (atualC.Coluna != celulaNova.Coluna) //chega na coluna do item desejado
                 {
                     atualC = atualC.Direita;
                 }
-                if (atualL.Linha != celulaNova.Linha)
+                if (atualL.Linha != celulaNova.Linha)// chega na linha do item desejado
                 {
                     atualL = atualL.Abaixo;
                 }
@@ -159,7 +159,7 @@ public class MatrizEsparsa
             Celula noCabecaC = atualC;
             Celula noCabecaL = atualL;
             bool achouAcima = false;
-            while (achouAcima == false)
+            while (achouAcima == false) // acha a de cima
             {
                 if (atualC.Abaixo == noCabecaC)
                 {
@@ -171,19 +171,19 @@ public class MatrizEsparsa
                 else
                 if (atualC.Abaixo.Valor == celulaNova.Valor &&
                     atualC.Abaixo.Coluna == celulaNova.Coluna &&
-                    atualC.Abaixo.Linha == celulaNova.Linha)
+                    atualC.Abaixo.Linha == celulaNova.Linha)// se mesmas cordenadas e valor são iguais
                 {
                     achou = true;
                     cima = atualC;
-                    baixo = atualC.Abaixo.Abaixo; // talvez esteja errado
+                    baixo = atualC.Abaixo.Abaixo; 
                     achouAcima = true;
                 }
                 else
                 if (atualC.Abaixo.Coluna == celulaNova.Coluna &&
-                    atualC.Abaixo.Linha == celulaNova.Linha)
+                    atualC.Abaixo.Linha == celulaNova.Linha)// checa se coordenadas são iguais, mas o valor é diferente
                 {
                     cima = atualC;
-                    baixo = atualC.Abaixo.Abaixo; // talvez esteja errado
+                    baixo = atualC.Abaixo.Abaixo;  
                     achouAcima = true;
                 }
                 else
@@ -201,7 +201,7 @@ public class MatrizEsparsa
                 }
             }
             bool achouEsq = false;
-            while (achouEsq == false)
+            while (achouEsq == false)// acha a da esquerda
             {
                 if (atualL.Direita.Coluna > celulaNova.Coluna)
                 {
@@ -234,16 +234,14 @@ public class MatrizEsparsa
                 }
                 else
                     atualL = atualL.Direita;
-
             }
-
         }
         return achou;
 
     }
     public void SomarEmColuna(int c, double valor)
     {
-        if (c >= numeroColunas || c <= 0)
+        if (c > numeroColunas || c <= 0)
             throw new Exception("Fora do intervalo!");
 
         Celula atualColuna = NoCabeca.Direita;
@@ -256,7 +254,7 @@ public class MatrizEsparsa
         Celula atual = atualColuna.Abaixo;
         int linhaAtual = 1, ateOnde = atual.Linha;
 
-        while (linhaAtual < NumeroLinhas)
+        while (linhaAtual < NumeroLinhas)//enquanto a auxiliar for menor que o número de linhas
         {
             if (linhaAtual != ateOnde)
             {
@@ -268,17 +266,17 @@ public class MatrizEsparsa
                 atual.Valor += valor;
                 if (atual.Valor == 0)
                 {
-                    RemoverCelula(atual.Coluna, atual.Linha);
+                    RemoverCelula(atual.Coluna, atual.Linha);// remove se o valor for 0
                 }
                 atual = atual.Abaixo;
                 if (atual.Linha == 0)
-                    ateOnde = NumeroLinhas;
+                    ateOnde = NumeroLinhas;//ateOnde recebe o número de colunas para ir até o final, se não cairia em loop por nunca chegar a 0
                 else
                     ateOnde = atual.Linha;
                 linhaAtual++;
             }
-
         }
+        //chegou a última linha
         if (Procurar(atualColuna.Coluna, linhaAtual) != default(Celula))
         {
             Procurar(atualColuna.Coluna, linhaAtual).Valor += valor;
@@ -291,7 +289,5 @@ public class MatrizEsparsa
         {
             Inserir(new Celula(valor, linhaAtual, atualColuna.Coluna, default(Celula), default(Celula)));
         }
-
-        
     }
 }
