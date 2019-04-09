@@ -407,7 +407,7 @@ namespace _18015_18180_Projeto1ED
             }
             catch
             {
-                MessageBox.Show("Número de linhas e colunas não definido!", "Operações com Matriz Esparsa | Erro na soma de matrizes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Número de linhas e colunas não definido!", "Operações com Matriz Esparsa | Erro na criação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
