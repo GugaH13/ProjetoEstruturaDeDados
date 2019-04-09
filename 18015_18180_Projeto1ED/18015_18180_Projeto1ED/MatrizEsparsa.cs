@@ -65,7 +65,7 @@ public class MatrizEsparsa
 
     public void Inserir(Celula novaCelula)
     {
-        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas)
+        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas && novaCelula.Linha > 0 && novaCelula.Coluna > 0)
         {
             Celula esq, dir, cima, baixo;
             esq = dir = cima = baixo = null;
@@ -243,6 +243,9 @@ public class MatrizEsparsa
     }
     public void SomarEmColuna(int c, double valor)
     {
+        if (c > numeroColunas || c < numeroColunas)
+            throw new Exception("Fora do intervalo!");
+
         Celula atualColuna = NoCabeca.Direita;
 
         while (atualColuna.Coluna != c)
