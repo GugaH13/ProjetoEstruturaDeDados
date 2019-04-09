@@ -19,18 +19,12 @@ namespace _18015_18180_Projeto1ED
         {
             InitializeComponent();
             cbxOpções.SelectedIndex = 0;
-
             cbxQualMatriz.Items.Add("Matriz 1");
             cbxQualMatriz.Items.Add("Matriz 2");
             cbxQualMatriz.SelectedIndex = 0;
-
             cbxMatrizInserir.Items.Add("Matriz 1");
             cbxMatrizInserir.Items.Add("Matriz 2");
             cbxMatrizInserir.SelectedIndex = 0;
-
-            cbxMatrizSomarConstante.Items.Add("Matriz 1");
-            cbxMatrizSomarConstante.Items.Add("Matriz 2");
-            cbxMatrizSomarConstante.SelectedIndex = 0;
         }
 
         private void btnArquivo_Click(object sender, EventArgs e)
@@ -55,17 +49,48 @@ namespace _18015_18180_Projeto1ED
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            try
-            {
-                double valor = double.Parse(txtValor.Text);
-                int coluna = int.Parse(txtColuna.Text);
-                int linha = int.Parse(txtLinha.Text);
+            double valor = double.Parse(txtValor.Text);
+            int coluna = int.Parse(txtColuna.Text);
+            int linha = int.Parse(txtLinha.Text);
 
+            if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
+            {
+                try
+                {
+                    matriz1.Inserir(new Celula(valor, linha, coluna, default(Celula), default(Celula)));
+                    Exibir(dgvMatriz1, matriz1);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                try
+                {
+                    matriz2.Inserir(new Celula(valor, linha, coluna, default(Celula), default(Celula)));
+                    Exibir(dgvMatriz2, matriz2);
+                }
+                catch
+                {
+                    MessageBox.Show("Linha ou coluna fora do intervalo", "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            int coluna = int.Parse(txtColuna.Text);
+            int linha = int.Parse(txtLinha.Text);
+
+            if (coluna != default(int) && linha != default(int))
+            {
                 if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
                 {
                     try
                     {
-                        matriz1.Inserir(new Celula(valor, linha, coluna, default(Celula), default(Celula)));
+                        matriz1.RemoverCelula(coluna, linha);
                         Exibir(dgvMatriz1, matriz1);
                     }
                     catch (Exception erro)
@@ -77,117 +102,58 @@ namespace _18015_18180_Projeto1ED
                 {
                     try
                     {
-                        matriz2.Inserir(new Celula(valor, linha, coluna, default(Celula), default(Celula)));
+                        matriz2.RemoverCelula(coluna, linha);
                         Exibir(dgvMatriz2, matriz2);
                     }
-                    catch
+                    catch (Exception erro)
                     {
-                        MessageBox.Show("Linha ou coluna fora do intervalo", "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
-            catch
+            else
             {
-                MessageBox.Show("Parâmetros não passados corretamente!", "Operações com Matriz Esparsa | Erro de inserção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void btnRemover_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int coluna = int.Parse(txtColuna.Text);
-                int linha = int.Parse(txtLinha.Text);
-
-                if (coluna != default(int) && linha != default(int))
-                {
-                    if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
-                    {
-                        try
-                        {
-                            matriz1.RemoverCelula(coluna, linha);
-                            Exibir(dgvMatriz1, matriz1);
-                        }
-                        catch (Exception erro)
-                        {
-                            MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro de exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            matriz2.RemoverCelula(coluna, linha);
-                            Exibir(dgvMatriz2, matriz2);
-                        }
-                        catch (Exception erro)
-                        {
-                            MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro de exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Preencha os campos corretamente!", "Operações com Matriz Esparsa | Erro de exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Parâmetros não passados corretamente!", "Operações com Matriz Esparsa | Erro de exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Preencha os campos corretamente!", "Operações com Matriz Esparsa | Erro de exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void btnProcurar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int coluna = int.Parse(txtColuna.Text);
-                int linha = int.Parse(txtLinha.Text);
+            int coluna = int.Parse(txtColuna.Text);
+            int linha = int.Parse(txtLinha.Text);
 
-                if (coluna != default(int) && linha != default(int) && coluna != 0 && linha != 0)
+            if (coluna != default(int) && linha != default(int) && coluna != 0 && linha != 0)
+            {
+                if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
                 {
-                    if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
-                    {
-                        if (matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
-                            txtValor.Text = matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)).Valor.ToString();
-                        else
-                            MessageBox.Show("Valor não encontrado!", "Operações com Matriz Esparsa | Erro de procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    if (matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
+                        txtValor.Text = matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)).Valor.ToString();
                     else
-                    {
-                        if (matriz2.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
-                            txtValor.Text = matriz2.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)).Valor.ToString();
-                        else
-                            MessageBox.Show("Valor não encontrado!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                        MessageBox.Show("Valor não encontrado!", "Operações com Matriz Esparsa | Erro de procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show("Coordenadas fora do intervalo!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                {
+                    if (matriz2.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
+                        txtValor.Text = matriz2.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)).Valor.ToString();
+                    else
+                        MessageBox.Show("Valor não encontrado!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            catch
-            {
-                MessageBox.Show("Parâmetros não passados corretamente!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            else
+                MessageBox.Show("Coordenadas fora do intervalo!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSomar_Click(object sender, EventArgs e)
         {
-            try
+            if (cbxMatrizSomarConstante.SelectedItem.ToString() == "Matriz 1")
             {
-                if (cbxMatrizSomarConstante.SelectedItem.ToString() == "Matriz 1")
-                {
-                    matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
-                    Exibir(dgvMatriz1, matriz1);
-                }
-                else
-                {
-                    matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
-                    Exibir(dgvMatriz2, matriz2);
-                }
+                matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
+                Exibir(dgvMatriz1, matriz1);
             }
-            catch
+            else
             {
-                MessageBox.Show("Parâmetros não passados corretamente!", "Operações com Matriz Esparsa | Erro na Soma de Constante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text), int.Parse(txtConstSomar.Text));
+                Exibir(dgvMatriz2, matriz2);
             }
         }
 
@@ -293,7 +259,7 @@ namespace _18015_18180_Projeto1ED
         {
             try
             {
-                if (cbxOpções.SelectedIndex == 0)
+                if(cbxOpções.SelectedIndex == 0)
                     Exibir(dgvMatriz3, MultiplicarMatrizes(matriz1, matriz2));
                 else
                     Exibir(dgvMatriz3, MultiplicarMatrizes(matriz2, matriz1));
@@ -392,9 +358,9 @@ namespace _18015_18180_Projeto1ED
 
         private void btnCriarMatriz_Click(object sender, EventArgs e)
         {
-            try
+            if (txtLinhas.Text.Trim() != "" && txtColunas.Text.Trim() != "")
             {
-                if (cbxQualMatriz.SelectedIndex == 0)
+                if(cbxQualMatriz.SelectedIndex == 0)
                 {
                     CriarMatriz(ref matriz1);
                     Exibir(dgvMatriz1, matriz1);
@@ -404,10 +370,6 @@ namespace _18015_18180_Projeto1ED
                     CriarMatriz(ref matriz2);
                     Exibir(dgvMatriz2, matriz2);
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Número de linhas e colunas não definido!", "Operações com Matriz Esparsa | Erro na soma de matrizes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -421,22 +383,15 @@ namespace _18015_18180_Projeto1ED
 
         private void btnEsvaziar_Click(object sender, EventArgs e)
         {
-            try
+            if (cbxQualMatriz.SelectedItem.ToString() == "Matriz 1")
             {
-                if (cbxQualMatriz.SelectedItem.ToString() == "Matriz 1")
-                {
-                    Esvaziar(ref matriz1);
-                    Exibir(dgvMatriz1, matriz1);
-                }
-                else
-                {
-                    Esvaziar(ref matriz2);
-                    Exibir(dgvMatriz2, matriz2);
-                }
+                Esvaziar(ref matriz1);
+                Exibir(dgvMatriz1, matriz1);
             }
-            catch
+            else
             {
-                MessageBox.Show("Não é possível esvaziar uma matriz não existente!", "Operações com Matriz Esparsa | Erro ao esvaziar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Esvaziar(ref matriz2);
+                Exibir(dgvMatriz2, matriz2);
             }
         }
 
@@ -450,7 +405,7 @@ namespace _18015_18180_Projeto1ED
         {
             MatrizEsparsa resultado;
 
-            if (matriz1.NumeroColunas == matriz2.NumeroLinhas && matriz1 != null && matriz2 != null)
+            if (matriz1.NumeroColunas == matriz2.NumeroLinhas)
             {
                 resultado = new MatrizEsparsa(matriz1.NumeroLinhas, matriz2.NumeroColunas);
                 double valorCelulaAInserir = 0;
