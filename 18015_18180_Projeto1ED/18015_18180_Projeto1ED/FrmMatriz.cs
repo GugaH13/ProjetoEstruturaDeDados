@@ -61,9 +61,9 @@ namespace _18015_18180_Projeto1ED
             //jogamos uma exceção informando o usuário
             try
             {
-                double valor = double.Parse(txtValor.Text);
-                int coluna = int.Parse(txtColuna.Text);
-                int linha = int.Parse(txtLinha.Text);
+                double valor = double.Parse(txtValor.Text.Trim());
+                int coluna = int.Parse(txtColuna.Text.Trim());
+                int linha = int.Parse(txtLinha.Text.Trim());
 
                 //Verifica em qual matriz o dado deverá ser inserido e, em seguida, 
                 //chama o método Inserir da classe MatrizEsparsa
@@ -105,8 +105,8 @@ namespace _18015_18180_Projeto1ED
             //jogamos uma exceção informando o usuário
             try
             {
-                int coluna = int.Parse(txtColuna.Text);
-                int linha = int.Parse(txtLinha.Text);
+                int coluna = int.Parse(txtColuna.Text.Trim());
+                int linha = int.Parse(txtLinha.Text.Trim());
 
                 //Caso os parâmetros não tenham sido passados incorretamente,
                 //chamamos o método RemoverCelula da classe MatrizEsparsa
@@ -156,8 +156,8 @@ namespace _18015_18180_Projeto1ED
             //jogamos uma exceção informando o usuário
             try
             {
-                int coluna = int.Parse(txtColuna.Text);
-                int linha = int.Parse(txtLinha.Text);
+                int coluna = int.Parse(txtColuna.Text.Trim());
+                int linha = int.Parse(txtLinha.Text.Trim());
 
                 //Caso os parâmetros estejam corretos, 
                 //chamamos o método Procurar da classe MatrizEsparsa
@@ -166,15 +166,15 @@ namespace _18015_18180_Projeto1ED
                     //Verificamos em qual matriz devemos procurar pelo dado desejado
                     if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
                     {
-                        if (matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
-                            txtValor.Text = matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)).Valor.ToString();
+                        if (matriz1.Procurar(int.Parse(txtColuna.Text.Trim()), int.Parse(txtLinha.Text.Trim())) != default(Celula))
+                            txtValor.Text = matriz1.Procurar(int.Parse(txtColuna.Text.Trim()), int.Parse(txtLinha.Text.Trim())).Valor.ToString();
                         else
                             MessageBox.Show("Valor não encontrado!", "Operações com Matriz Esparsa | Erro de procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        if (matriz2.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
-                            txtValor.Text = matriz2.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)).Valor.ToString();
+                        if (matriz2.Procurar(int.Parse(txtColuna.Text.Trim()), int.Parse(txtLinha.Text.Trim())) != default(Celula))
+                            txtValor.Text = matriz2.Procurar(int.Parse(txtColuna.Text.Trim()), int.Parse(txtLinha.Text.Trim())).Valor.ToString();
                         else
                             MessageBox.Show("Valor não encontrado!", "Operações com Matriz Esparsa | Erro na procura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -196,12 +196,12 @@ namespace _18015_18180_Projeto1ED
                 //e em seguida chamamos o método SomarEmColuna da classe MatrizEsparsa
                 if (cbxMatrizSomarConstante.SelectedItem.ToString() == "Matriz 1")
                 {
-                    matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), double.Parse(txtConstSomar.Text));
+                    matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text.Trim()), double.Parse(txtConstSomar.Text.Trim()));
                     Exibir(dgvMatriz1, matriz1);
                 }
                 else
                 {
-                    matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text), double.Parse(txtConstSomar.Text));
+                    matriz2.SomarEmColuna(int.Parse(txtColunaSoma.Text.Trim()), double.Parse(txtConstSomar.Text.Trim()));
                     Exibir(dgvMatriz2, matriz2);
                 }
             }
@@ -300,6 +300,7 @@ namespace _18015_18180_Projeto1ED
                     if (atual.Valor != default(double))
                     {
                         dgv.Rows[atual.Linha - 1].Cells[atual.Coluna - 1].Value = atual.Valor;
+                        dgv.Columns[atual.Coluna - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
                     }
                     atual = atual.Abaixo;
                 }
@@ -451,7 +452,7 @@ namespace _18015_18180_Projeto1ED
         private void CriarMatriz(ref MatrizEsparsa matriz)
         {
 
-            matriz = new MatrizEsparsa(int.Parse(txtLinhas.Text), int.Parse(txtColunas.Text));
+            matriz = new MatrizEsparsa(int.Parse(txtLinhas.Text.Trim()), int.Parse(txtColunas.Text.Trim()));
             dgvMatriz3.Rows.Clear();
             dgvMatriz3.Refresh();
         }
@@ -518,13 +519,13 @@ namespace _18015_18180_Projeto1ED
                             //que o valor da célula é zero
                             if (matriz1.Procurar(indice, linha) == default(Celula))
                             {
-                                if (matriz2.Procurar(indice, linha) == default(Celula))
+                                if (matriz2.Procurar(coluna, indice) == default(Celula))
                                     valorCelulaAInserir += 0;
                                 else
                                     valorCelulaAInserir += 0 * matriz2.Procurar(coluna, indice).Valor;
                             }
                             else
-                            if (matriz2.Procurar(indice, linha) == default(Celula))
+                            if (matriz2.Procurar(coluna, indice) == default(Celula))
                                 valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * 0;
                             else
                                 valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * matriz2.Procurar(coluna, indice).Valor;
