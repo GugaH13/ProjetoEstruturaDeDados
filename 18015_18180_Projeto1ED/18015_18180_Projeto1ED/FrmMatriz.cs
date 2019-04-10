@@ -443,15 +443,14 @@ namespace _18015_18180_Projeto1ED
                     Exibir(dgvMatriz2, matriz2);
                 }
             }
-            catch
+            catch(Exception erro)
             {
-                MessageBox.Show("Número de linhas e colunas não definido!", "Operações com Matriz Esparsa | Erro na criação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(erro.Message, "Operações com Matriz Esparsa | Erro na criação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void CriarMatriz(ref MatrizEsparsa matriz)
         {
-
             matriz = new MatrizEsparsa(int.Parse(txtLinhas.Text.Trim()), int.Parse(txtColunas.Text.Trim()));
             dgvMatriz3.Rows.Clear();
             dgvMatriz3.Refresh();

@@ -65,7 +65,7 @@ public class MatrizEsparsa
 
     public void Inserir(Celula novaCelula)
     {
-        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas && novaCelula.Linha > 0 && novaCelula.Coluna > 0)
+        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas && novaCelula.Linha >= 0 && novaCelula.Coluna >= 0)
         {
             Celula esq, dir, cima, baixo;
             esq = dir = cima = baixo = null;
@@ -120,9 +120,9 @@ public class MatrizEsparsa
         c = 0;
         for (l = 1; l < nLinhas; l++)//já criou todos na linha 0, então vai iniciar na um
         {
-                anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
-                anterior.Abaixo.Direita = anterior.Abaixo;
-                anterior = anterior.Abaixo;
+            anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));
+            anterior.Abaixo.Direita = anterior.Abaixo;
+            anterior = anterior.Abaixo;
         }
         anterior.Abaixo = new Celula(default(double), l, c, anterior.Abaixo, default(Celula));//é a última linha
         anterior.Abaixo.Direita = anterior.Abaixo;
@@ -133,109 +133,99 @@ public class MatrizEsparsa
     protected bool ExisteDado(Celula celulaNova, ref Celula cima, ref Celula esq, ref Celula dir, ref Celula baixo)
     {
         bool achou = false;
-        if (EstaVazia())
+        Celula atualC = noCabeca.Direita,
+        atualL = noCabeca.Abaixo;
+        while (atualC.Coluna != celulaNova.Coluna || atualL.Linha != celulaNova.Linha)
         {
-            cima = noCabeca.Direita;
-            esq = noCabeca.Abaixo;
-            dir = noCabeca.Abaixo;
-            baixo = noCabeca.Direita;
-            achou = false;
-        }
-        else
-        {
-            Celula atualC = noCabeca.Direita,
-            atualL = noCabeca.Abaixo;
-            while (atualC.Coluna != celulaNova.Coluna || atualL.Linha != celulaNova.Linha)
+            if (atualC.Coluna != celulaNova.Coluna) //chega na coluna do item desejado
             {
-                if (atualC.Coluna != celulaNova.Coluna) //chega na coluna do item desejado
-                {
-                    atualC = atualC.Direita;
-                }
-                if (atualL.Linha != celulaNova.Linha)// chega na linha do item desejado
-                {
-                    atualL = atualL.Abaixo;
-                }
+                atualC = atualC.Direita;
             }
-            Celula noCabecaC = atualC;
-            Celula noCabecaL = atualL;
-            bool achouAcima = false;
-            while (achouAcima == false) // acha a de cima
+            if (atualL.Linha != celulaNova.Linha)// chega na linha do item desejado
             {
-                if (atualC.Abaixo == noCabecaC)
-                {
-                    achouAcima = true;
-                    cima = atualC;
-                    achou = false;
-                    baixo = atualC.Abaixo;
-                }
-                else
-                if (atualC.Abaixo.Valor == celulaNova.Valor &&
-                    atualC.Abaixo.Coluna == celulaNova.Coluna &&
-                    atualC.Abaixo.Linha == celulaNova.Linha)// se mesmas cordenadas e valor são iguais
-                {
-                    achou = true;
-                    cima = atualC;
-                    baixo = atualC.Abaixo.Abaixo; 
-                    achouAcima = true;
-                }
-                else
-                if (atualC.Abaixo.Coluna == celulaNova.Coluna &&
-                    atualC.Abaixo.Linha == celulaNova.Linha)// checa se coordenadas são iguais, mas o valor é diferente
-                {
-                    cima = atualC;
-                    baixo = atualC.Abaixo.Abaixo;  
-                    achouAcima = true;
-                }
-                else
-                if (atualC.Abaixo.Linha < celulaNova.Linha)
-                {
-                    atualC = atualC.Abaixo;
-                }
-                else
-                if (atualC.Abaixo.Linha > celulaNova.Linha)
-                {
-                    cima = atualC;
-                    achou = false;
-                    achouAcima = true;
-                    baixo = atualC.Abaixo;
-                }
-            }
-            bool achouEsq = false;
-            while (achouEsq == false)// acha a da esquerda
-            {
-                if (atualL.Direita.Coluna > celulaNova.Coluna)
-                {
-                    esq = atualL;
-                    achouEsq = true;
-                    dir = atualL.Direita;
-                }
-                else
-                if (atualL.Direita == noCabecaL)
-                {
-                    esq = atualL;
-                    achouEsq = true;
-                    dir = atualL.Direita;
-                }
-                if (atualL.Direita.Valor == celulaNova.Valor &&
-                    atualL.Direita.Coluna == celulaNova.Coluna &&
-                    atualL.Direita.Linha == celulaNova.Linha)
-                {
-                    achouEsq = true;
-                    esq = atualL;
-                    dir = atualL.Direita.Direita;
-                }
-                else
-                if (atualL.Direita.Coluna == celulaNova.Coluna &&
-                    atualL.Direita.Linha == celulaNova.Linha)
-                {
-                    achouEsq = true;
-                    esq = atualL;
-                    dir = atualL.Direita.Direita;
-                }
-                else
-                    atualL = atualL.Direita;
+                atualL = atualL.Abaixo;
             }
         }
+        Celula noCabecaC = atualC;
+        Celula noCabecaL = atualL;
+        bool achouAcima = false;
+        while (achouAcima == false) // acha a de cima
+        {
+            if (atualC.Abaixo == noCabecaC)
+            {
+                achouAcima = true;
+                cima = atualC;
+                achou = false;
+                baixo = atualC.Abaixo;
+            }
+            else
+            if (atualC.Abaixo.Valor == celulaNova.Valor &&
+                atualC.Abaixo.Coluna == celulaNova.Coluna &&
+                atualC.Abaixo.Linha == celulaNova.Linha)// se mesmas cordenadas e valor são iguais
+            {
+                achou = true;
+                cima = atualC;
+                baixo = atualC.Abaixo;
+                achouAcima = true;
+            }
+            else
+            if (atualC.Abaixo.Coluna == celulaNova.Coluna &&
+                atualC.Abaixo.Linha == celulaNova.Linha)// checa se coordenadas são iguais, mas o valor é diferente
+            {
+                cima = atualC;
+                baixo = atualC.Abaixo;
+                achouAcima = true;
+            }
+            else
+            if (atualC.Abaixo.Linha < celulaNova.Linha)
+            {
+                atualC = atualC.Abaixo;
+            }
+            else
+            if (atualC.Abaixo.Linha > celulaNova.Linha)
+            {
+                cima = atualC;
+                achou = false;
+                achouAcima = true;
+                baixo = atualC.Abaixo;
+            }
+        }
+        bool achouEsq = false;
+        while (achouEsq == false)// acha a da esquerda
+        {
+            if (atualL.Direita.Coluna > celulaNova.Coluna)
+            {
+                esq = atualL;
+                achouEsq = true;
+                dir = atualL.Direita;
+            }
+            else
+            if (atualL.Direita == noCabecaL)
+            {
+                esq = atualL;
+                achouEsq = true;
+                dir = atualL.Direita;
+            }
+            if (atualL.Direita.Valor == celulaNova.Valor &&
+                atualL.Direita.Coluna == celulaNova.Coluna &&
+                atualL.Direita.Linha == celulaNova.Linha)
+            {
+                achouEsq = true;
+                esq = atualL;
+                dir = atualL.Direita;
+            }
+            else
+            if (atualL.Direita.Coluna == celulaNova.Coluna &&
+                atualL.Direita.Linha == celulaNova.Linha)
+            {
+                achouEsq = true;
+                esq = atualL;
+                dir = atualL.Direita;
+            }
+            else
+                atualL = atualL.Direita;
+        }
+
         return achou;
 
     }
