@@ -165,7 +165,7 @@ public class MatrizEsparsa
             {
                 achou = true;
                 cima = atualC;
-                baixo = atualC.Abaixo;
+                baixo = atualC.Abaixo.Abaixo;
                 achouAcima = true;
             }
             else
@@ -173,7 +173,7 @@ public class MatrizEsparsa
                 atualC.Abaixo.Linha == celulaNova.Linha)// checa se coordenadas são iguais, mas o valor é diferente
             {
                 cima = atualC;
-                baixo = atualC.Abaixo;
+                baixo = atualC.Abaixo.Abaixo;
                 achouAcima = true;
             }
             else
@@ -212,7 +212,7 @@ public class MatrizEsparsa
             {
                 achouEsq = true;
                 esq = atualL;
-                dir = atualL.Direita;
+                dir = atualL.Direita.Direita;
             }
             else
             if (atualL.Direita.Coluna == celulaNova.Coluna &&
@@ -220,7 +220,7 @@ public class MatrizEsparsa
             {
                 achouEsq = true;
                 esq = atualL;
-                dir = atualL.Direita;
+                dir = atualL.Direita.Direita;
             }
             else
                 atualL = atualL.Direita;

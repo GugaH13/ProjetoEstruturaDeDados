@@ -300,7 +300,7 @@ namespace _18015_18180_Projeto1ED
                     if (atual.Valor != default(double))
                     {
                         dgv.Rows[atual.Linha - 1].Cells[atual.Coluna - 1].Value = atual.Valor;
-                        //dgv.Columns[atual.Coluna - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+                        dgv.Columns[atual.Coluna - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
                     }
                     atual = atual.Abaixo;
                 }
