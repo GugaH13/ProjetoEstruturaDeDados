@@ -15,6 +15,7 @@ namespace _18015_18180_Projeto1ED
     {
         MatrizEsparsa matriz1, matriz2;
 
+        //Os componentes são configurados na inicialização da aplicação
         public frmMatriz()
         {
             InitializeComponent();
@@ -55,12 +56,17 @@ namespace _18015_18180_Projeto1ED
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
+            //Ele tenta converter os valores dos textboxes,
+            //caso os campos não estejam preenchidos corretamente,
+            //jogamos uma exceção informando o usuário
             try
             {
                 double valor = double.Parse(txtValor.Text);
                 int coluna = int.Parse(txtColuna.Text);
                 int linha = int.Parse(txtLinha.Text);
 
+                //Verifica em qual matriz o dado deverá ser inserido e, em seguida, 
+                //chama o método Inserir da classe MatrizEsparsa
                 if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
                 {
                     try
@@ -94,13 +100,19 @@ namespace _18015_18180_Projeto1ED
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
+            //Ele tenta converter os valores dos textboxes,
+            //caso os campos não estejam preenchidos corretamente,
+            //jogamos uma exceção informando o usuário
             try
             {
                 int coluna = int.Parse(txtColuna.Text);
                 int linha = int.Parse(txtLinha.Text);
 
+                //Caso os parâmetros não tenham sido passados incorretamente,
+                //chamamos o método RemoverCelula da classe MatrizEsparsa
                 if (coluna != default(int) && linha != default(int))
                 {
+                    //Verifica de qual matriz deveremos remover o dado desejado
                     if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
                     {
                         try
@@ -139,13 +151,19 @@ namespace _18015_18180_Projeto1ED
 
         private void btnProcurar_Click(object sender, EventArgs e)
         {
+            //Ele tenta converter os valores dos textboxes,
+            //caso os campos não estejam preenchidos corretamente,
+            //jogamos uma exceção informando o usuário
             try
             {
                 int coluna = int.Parse(txtColuna.Text);
                 int linha = int.Parse(txtLinha.Text);
 
+                //Caso os parâmetros estejam corretos, 
+                //chamamos o método Procurar da classe MatrizEsparsa
                 if (coluna != default(int) && linha != default(int) && coluna != 0 && linha != 0)
                 {
+                    //Verificamos em qual matriz devemos procurar pelo dado desejado
                     if (cbxMatrizInserir.SelectedItem.ToString() == "Matriz 1")
                     {
                         if (matriz1.Procurar(int.Parse(txtColuna.Text), int.Parse(txtLinha.Text)) != default(Celula))
@@ -174,9 +192,10 @@ namespace _18015_18180_Projeto1ED
         {
             try
             {
+                //Verificamos em qual das matrizes iremos efetuar a soma de constante,
+                //e em seguida chamamos o método SomarEmColuna da classe MatrizEsparsa
                 if (cbxMatrizSomarConstante.SelectedItem.ToString() == "Matriz 1")
                 {
-                    var cu = double.Parse(txtConstSomar.Text.Trim());
                     matriz1.SomarEmColuna(int.Parse(txtColunaSoma.Text), double.Parse(txtConstSomar.Text));
                     Exibir(dgvMatriz1, matriz1);
                 }
@@ -216,21 +235,29 @@ namespace _18015_18180_Projeto1ED
                 while (!arquivo.EndOfStream)
                 {
                     linha = arquivo.ReadLine();
+                    //for para identificar as separações, para que seja possível
+                    //quebrar a string linha em "valor, coluna e linha"
                     for (int i = 0; i < linha.Trim().Length; i++)
                     {
                         if (linha[i] == ';')
                         {
-                            if (primeiraSeparacao != 0)
+                            //se a primeiraSeparacao já foi encontrada, 
+                            //segundaSeparacao receberá o índice onde foi encontrado
+                            //o ponto e vírgula, senão a primeiraSeparação receberá esse índice
+                            if (primeiraSeparacao != 0) 
                                 segundaSeparacao = i;
                             else
                                 primeiraSeparacao = i;
                         }
                     }
 
+                    //estabelecemos variáveis auxiliares para encurtar os parâmetros para a criação
+                    //de um objeto da classe Celula
                     int colunaDado = int.Parse(linha.Substring(0, primeiraSeparacao));
                     int linhaDado = int.Parse(linha.Substring(primeiraSeparacao + 1, segundaSeparacao - (primeiraSeparacao + 1)));
                     double valorDado = double.Parse(linha.Substring(segundaSeparacao + 1).Trim());
 
+                    //insere a célula lida na matriz
                     Celula celulaAtual = new Celula(valorDado, linhaDado, colunaDado, default(Celula), default(Celula));
                     if (linhaDado > qualMatriz.NumeroLinhas || colunaDado > qualMatriz.NumeroColunas)
                         throw new Exception("Célula fora das dimensões da Matriz!");
@@ -265,19 +292,22 @@ namespace _18015_18180_Projeto1ED
             dgv.RowCount = matriz.NumeroLinhas;
             dgv.ColumnCount = matriz.NumeroColunas;
 
+            //percorremos a nossa matriz e exibimos os dados no gridview
             while (atualColuna != matriz.NoCabeca)
             {
                 while (atual != atualColuna)
                 {
                     if (atual.Valor != default(double))
                     {
-                        dgv.Rows[atual.Linha - 1].Cells[atual.Coluna - 1].Value = atual.Valor;//deve estar errado
+                        dgv.Rows[atual.Linha - 1].Cells[atual.Coluna - 1].Value = atual.Valor;
                     }
                     atual = atual.Abaixo;
                 }
                 atualColuna = atualColuna.Direita;
                 atual = atualColuna.Abaixo;
             }
+
+            //adicionamos índices aos cabeçalhos de linhas e colunas do gridview
 
             foreach (DataGridViewRow linha in dgv.Rows)
             {
@@ -294,6 +324,9 @@ namespace _18015_18180_Projeto1ED
         {
             try
             {
+                //Verificamos a maneira que o usuário deseja multiplicar as matrizes:
+                //AxB ou BxA, caso suas proporções sigam os critérios de multiplicação
+                //de matrizes
                 if (cbxOpções.SelectedIndex == 0)
                     Exibir(dgvMatriz3, MultiplicarMatrizes(matriz1, matriz2));
                 else
@@ -391,6 +424,9 @@ namespace _18015_18180_Projeto1ED
             return resultado;
         }
 
+        //Método utilizado no caso de o usuário querer criar a matriz manualmente,
+        //e então chamamos um outro método que de fato cria ela, pois esse apenas
+        //define qual matriz será criada (A ou B)
         private void btnCriarMatriz_Click(object sender, EventArgs e)
         {
             try
@@ -420,6 +456,7 @@ namespace _18015_18180_Projeto1ED
             dgvMatriz3.Refresh();
         }
 
+        //Método criado para esvaziar a matriz
         private void btnEsvaziar_Click(object sender, EventArgs e)
         {
             try
@@ -443,6 +480,9 @@ namespace _18015_18180_Projeto1ED
 
         private void Esvaziar(ref MatrizEsparsa matriz)
         {
+            //É verificado se a matriz está vazia,
+            //para então limparmos ela, pois é impossível remover dados
+            //de uma matriz que não possui dados
             if (matriz != null)
                 matriz.EsvaziarMatriz();
         }
@@ -451,18 +491,31 @@ namespace _18015_18180_Projeto1ED
         {
             MatrizEsparsa resultado;
 
+            //Verifica se as matrizes estão em condições ideias para efetuar a multiplicação
             if (matriz1.NumeroColunas == matriz2.NumeroLinhas && matriz1 != null && matriz2 != null)
             {
+                //Geramos uma terceira matriz para armazenar o resultado da multiplicação
                 resultado = new MatrizEsparsa(matriz1.NumeroLinhas, matriz2.NumeroColunas);
+
+                //Variável para armazenar a soma dos elementos multiplicados
+                //que serão dispostos em uma célula da matriz resultante
                 double valorCelulaAInserir = 0;
+
+                //Índice auxiliar que percorrerá tanto as colunas da matriz1, 
+                //quanto as linhas da matriz2
                 int quantoPercorrer = matriz1.NumeroColunas;
 
+                //Percorre uma linha da matriz resultante
                 for (int linha = 1; linha <= resultado.NumeroLinhas; linha++)
                 {
+                    //Percorre uma linha da matriz resultante
                     for (int coluna = 1; coluna <= resultado.NumeroColunas; coluna++)
                     {
+                        //Percorre uma coluna da matriz1 e uma linha da matriz2 em paralelo
                         for (int indice = 1; indice <= quantoPercorrer; indice++)
                         {
+                            //Caso o objeto retornado seja nulo, isso significado 
+                            //que o valor da célula é zero
                             if (matriz1.Procurar(indice, linha) == default(Celula))
                             {
                                 if (matriz2.Procurar(indice, linha) == default(Celula))
@@ -476,8 +529,12 @@ namespace _18015_18180_Projeto1ED
                             else
                                 valorCelulaAInserir += matriz1.Procurar(indice, linha).Valor * matriz2.Procurar(coluna, indice).Valor;
                         }
+                        //Após efetuar a multiplicação, inserimos o a somatória das multiplicações
+                        //na linha e coluna atual, caso ele seja diferente de zero, pois não há
+                        //necessidade de armazenar o zero
                         if (valorCelulaAInserir != 0)
                             resultado.Inserir(new Celula(valorCelulaAInserir, linha, coluna, null, null));
+                        //reiniciamos a variável que armazena a somatória das multiplicações
                         valorCelulaAInserir = 0;
                     }
                 }

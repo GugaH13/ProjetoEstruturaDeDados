@@ -12,12 +12,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class Celula : IComparable<Celula>
+public class Celula
 {
     Celula direita, abaixo;
     int linha, coluna;
     double valor;
-
 
     public Celula Direita { get => direita; set => direita = value; }
     public Celula Abaixo { get => abaixo; set => abaixo = value; }
@@ -32,9 +31,5 @@ public class Celula : IComparable<Celula>
         this.coluna = coluna;
         this.direita = direita;
         this.abaixo = abaixo;
-    }
-    public int CompareTo(Celula c)
-    {
-        return Valor.CompareTo(c.Valor);
     }
 }

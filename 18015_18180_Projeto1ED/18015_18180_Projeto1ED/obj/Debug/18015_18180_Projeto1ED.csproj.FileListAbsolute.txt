@@ -48,3 +48,13 @@ E:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1E
 E:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1EDRepositorio\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.csproj.CoreCompileInputs.cache
 E:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1EDRepositorio\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.exe
 E:\Informática\3°Semestre\Estruturas de Dados I\Projetos\18015_18180_Projeto1EDRepositorio\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.pdb
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.csprojAssemblyReference.cache
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\_18015_18180_Projeto1ED.frmMatriz.resources
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\_18015_18180_Projeto1ED.Properties.Resources.resources
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.csproj.GenerateResource.cache
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.csproj.CoreCompileInputs.cache
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.exe
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\obj\Debug\18015_18180_Projeto1ED.pdb
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\bin\Debug\18015_18180_Projeto1ED.exe.config
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\bin\Debug\18015_18180_Projeto1ED.exe
+C:\Users\Alexandra\Desktop\ProjetoMatrizEsparsa\18015_18180_Projeto1ED\18015_18180_Projeto1ED\bin\Debug\18015_18180_Projeto1ED.pdb
