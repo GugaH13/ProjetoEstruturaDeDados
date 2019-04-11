@@ -68,7 +68,7 @@ public class MatrizEsparsa
 
     public void Inserir(Celula novaCelula)
     {
-        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas && novaCelula.Linha > 0 && novaCelula.Coluna > 0)
+        if (novaCelula.Linha <= this.numeroLinhas && novaCelula.Coluna <= this.numeroColunas && novaCelula.Linha >= 0 && novaCelula.Coluna >= 0)
         {
             Celula esq, dir, cima, baixo;
             esq = dir = cima = baixo = null;
